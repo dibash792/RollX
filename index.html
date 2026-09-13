@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROLLX — Indoor Skating Arena</title>
+
+    <!-- Google Fonts: Outfit for bold display & Plus Jakarta Sans for UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet with cache-busting -->
+    <link rel="stylesheet" href="style.css?v=6">
+</head>
+
+<body>
+
+    <!-- =========================================
+         HERO SECTION
+    ========================================== -->
+    <section class="hero" id="home">
+
+        <!-- Background Image (Roller Skate Shoes) -->
+        <div class="hero-bg"></div>
+
+        <!-- Ambient Glow Elements -->
+        <div class="glow-orb glow-orange"></div>
+        <div class="glow-orb glow-cyan"></div>
+
+        <!-- Cinematic Overlay -->
+        <div class="overlay"></div>
+
+        <!-- =========================================
+             NAVIGATION
+        ========================================== -->
+        <header class="navbar">
+            <a href="#home" class="logo">
+                ROLL<span>X</span>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#arena">ARENA</a>
+                <a href="#pricing">PRICING</a>
+                <a href="#packages">PACKAGES</a>
+                <a href="#events">EVENTS</a>
+                <a href="#community">COMMUNITY</a>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- Logged In Skater Pill (Shown when signed in) -->
+                <div class="skater-profile-badge" id="skaterProfileBadge" style="display: none;">
+                    <span class="skater-dot"></span>
+                    <span class="skater-name" id="skaterNameDisplay">SKATER</span>
+                    <button class="skater-logout-btn" id="skaterLogoutBtn" title="Sign out" aria-label="Sign out">✕</button>
+                </div>
+
+                <!-- Sign In / Register Button -->
+                <button class="nav-auth-btn" id="openAuthModalBtn">
+                    <span>SIGN IN</span>
+                </button>
+
+                <a href="#booking" class="nav-book" id="mainNavBookBtn">
+                    <span>BOOK A SESSION</span>
+                    <span class="arrow">↗</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+
+        <!-- =========================================
+             HERO CONTENT
+        ========================================== -->
+        <main class="hero-content">
+
+            <div class="location-badge">
+                <span class="pulse-dot"></span>
+                <span>INDOOR ROLLER SKATING</span>
+                <span class="sep">•</span>
+                <span>LALBANDI, NEPAL</span>
+            </div>
+
+            <h1>
+                ROLL.<br>
+                RIDE.<br>
+                <span class="text-gradient">REPEAT.</span>
+            </h1>
+
+            <p class="description">
+                Your indoor space to skate, chill and connect.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#booking" class="primary-btn">
+                    <span>BOOK A SESSION</span>
+                    <span class="btn-icon">↗</span>
+                </a>
+
+                <a href="#arena" class="secondary-btn">
+                    <span>EXPLORE THE ARENA</span>
+                    <span class="btn-icon">↓</span>
+                </a>
+            </div>
+
+        </main>
+
+        <!-- =========================================
+             BOTTOM STATS BAR
+        ========================================== -->
+        <div class="bottom-info">
+            <div class="info-card">
+                <span class="info-val">10+</span>
+                <span class="info-lbl">AGE REQUIREMENT</span>
+            </div>
+
+            <div class="info-card">
+                <span class="info-val">INDOOR</span>
+                <span class="info-lbl">ALL-WEATHER SKATING</span>
+            </div>
+
+            <div class="info-card">
+                <span class="info-val">LALBANDI</span>
+                <span class="info-lbl">SARLAHI, NEPAL</span>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-widget">
+            <span class="scroll-txt">SCROLL</span>
+            <div class="scroll-track">
+                <div class="scroll-thumb"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- =========================================
+         TEMPORARY SECTIONS FOR NAVIGATION
+    ========================================== -->
+    <!-- =========================================
+         THE ARENA SECTION (MADE TO MOVE)
+    ========================================== -->
+    <section id="arena" class="arena-section">
+
+        <!-- Subtle Orange Ambient Atmosphere -->
+        <div class="arena-ambient-glow"></div>
+        <div class="arena-orange-glow"></div>
+
+        <!-- Skate Glide Kinetic Track (Horizontal motion inspired by skating) -->
+        <div class="skate-motion-track" aria-hidden="true">
+            <div class="skate-motion-marquee">
+                <span class="marquee-item">ROLLX INDOOR ARENA</span>
+                <span class="marquee-bullet">✦</span>
+                <span class="marquee-item">POLISHED MAPLE RINK</span>
+                <span class="marquee-bullet">✦</span>
+                <span class="marquee-item">QUAD SKATES ONLY</span>
+                <span class="marquee-bullet">✦</span>
+                <span class="marquee-item">PURE GLIDE & GOOD VIBES</span>
+                <span class="marquee-bullet">✦</span>
+                <span class="marquee-item">LALBANDI, SARLAHI, NEPAL</span>
+                <span class="marquee-bullet">✦</span>
+                <span class="marquee-item">ROLLX INDOOR ARENA</span>
+                <span class="marquee-bullet">✦</span>
+                <span class="marquee-item">POLISHED MAPLE RINK</span>
+                <span class="marquee-bullet">✦</span>
+                <span class="marquee-item">QUAD SKATES ONLY</span>
+                <span class="marquee-bullet">✦</span>
+                <span class="marquee-item">PURE GLIDE & GOOD VIBES</span>
+                <span class="marquee-bullet">✦</span>
+                <span class="marquee-item">LALBANDI, SARLAHI, NEPAL</span>
+                <span class="marquee-bullet">✦</span>
+            </div>
+        </div>
+
+        <div class="arena-container">
+
+            <!-- Section Header: Editorial & High Impact -->
+            <header class="arena-header">
+                <div class="arena-meta-row">
+                    <div class="arena-kicker">
+                        <span class="kicker-pulse"></span>
+                        <span class="kicker-text">THE ARENA</span>
+                    </div>
+                    <div class="arena-coords">
+                        <span>27.0583° N, 85.5891° E</span>
+                        <span class="sep">•</span>
+                        <span>LALBANDI, SARLAHI</span>
+                    </div>
+                </div>
+
+                <div class="arena-title-wrap">
+                    <h2 class="arena-headline">
+                        MADE TO <span class="text-orange-glow">MOVE.</span>
+                    </h2>
+                    <p class="arena-subtext">
+                        An indoor space built for skating, good energy and unforgettable time with your people.
+                    </p>
+                </div>
+            </header>
+
+            <!-- Main Layout: Split Stage with Cinematic Visual & Typography Features -->
+            <div class="arena-stage">
+
+                <!-- Left: Cinematic Media Visual Frame -->
+                <div class="arena-visual-pane">
+                    <div class="arena-visual-frame" id="arenaFrame">
+
+                        <!-- Visual Layers (Crossfades smoothly on feature hover) -->
+                        <div class="arena-img-wrapper">
+                            <img src="images/arena-main.jpg"
+                                alt="Indoor roller skating arena at ROLLX with skaters on polished floor"
+                                class="arena-img active" id="arenaImg0">
+                            <img src="images/arena-floor.jpg" alt="Pristine polished hardwood quad skate floor"
+                                class="arena-img" id="arenaImg1">
+                            <img src="images/arena-vibes.jpg" alt="Dynamic lights and electric music vibe at ROLLX"
+                                class="arena-img" id="arenaImg2">
+                            <img src="images/arena-safety.jpg" alt="Clean organized rental desk and quad skates"
+                                class="arena-img" id="arenaImg3">
+                        </div>
+
+                        <!-- Brand Motion Trace & Lighting Glaze -->
+                        <div class="arena-orange-tracer"></div>
+                        <div class="arena-visual-vignette"></div>
+
+                        <!-- Top Live Status Pill -->
+                        <div class="arena-status-pill">
+                            <span class="status-live-dot"></span>
+                            <span class="status-live-text">ALL-WEATHER INDOOR RINK • QUAD SKATING</span>
+                        </div>
+
+                        <!-- Bottom Spec Capsule -->
+                        <div class="arena-bottom-capsule">
+                            <div class="capsule-item">
+                                <span class="capsule-sub">FLOOR TYPE</span>
+                                <span class="capsule-val">Traction Polyurethane Maple</span>
+                            </div>
+                            <div class="capsule-divider"></div>
+                            <div class="capsule-item">
+                                <span class="capsule-sub">ATMOSPHERE</span>
+                                <span class="capsule-val">Pro Acoustic Sound & Mood Glow</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right: Editorial Feature Experiences (No boring cards) -->
+                <div class="arena-experiences-pane">
+                    <div class="experience-list" id="experienceList">
+
+                        <!-- 01 Smooth Floor -->
+                        <article class="exp-row active" data-index="0" data-label="Smooth Floor">
+                            <div class="exp-number-wrap">
+                                <span class="exp-number">01</span>
+                            </div>
+                            <div class="exp-content">
+                                <div class="exp-title-row">
+                                    <h3 class="exp-title">SMOOTH FLOOR</h3>
+                                    <span class="exp-category">SURFACE</span>
+                                </div>
+                                <p class="exp-desc">A comfortable indoor skating surface designed for a better ride.</p>
+                            </div>
+                            <div class="exp-arrow-wrap" aria-hidden="true">
+                                <span class="exp-arrow">→</span>
+                            </div>
+                            <div class="exp-indicator-line"></div>
+                        </article>
+
+                        <!-- 02 Good Vibes -->
+                        <article class="exp-row" data-index="1" data-label="Good Vibes">
+                            <div class="exp-number-wrap">
+                                <span class="exp-number">02</span>
+                            </div>
+                            <div class="exp-content">
+                                <div class="exp-title-row">
+                                    <h3 class="exp-title">GOOD VIBES</h3>
+                                    <span class="exp-category">ATMOSPHERE</span>
+                                </div>
+                                <p class="exp-desc">Music, atmosphere and energy that make every session enjoyable.</p>
+                            </div>
+                            <div class="exp-arrow-wrap" aria-hidden="true">
+                                <span class="exp-arrow">→</span>
+                            </div>
+                            <div class="exp-indicator-line"></div>
+                        </article>
+
+                        <!-- 03 Safe Space -->
+                        <article class="exp-row" data-index="2" data-label="Safe Space">
+                            <div class="exp-number-wrap">
+                                <span class="exp-number">03</span>
+                            </div>
+                            <div class="exp-content">
+                                <div class="exp-title-row">
+                                    <h3 class="exp-title">SAFE SPACE</h3>
+                                    <span class="exp-category">STANDARDS</span>
+                                </div>
+                                <p class="exp-desc">A clean, organized environment where you can skate comfortably.</p>
+                            </div>
+                            <div class="exp-arrow-wrap" aria-hidden="true">
+                                <span class="exp-arrow">→</span>
+                            </div>
+                            <div class="exp-indicator-line"></div>
+                        </article>
+
+                        <!-- 04 Come Together -->
+                        <article class="exp-row" data-index="3" data-label="Come Together">
+                            <div class="exp-number-wrap">
+                                <span class="exp-number">04</span>
+                            </div>
+                            <div class="exp-content">
+                                <div class="exp-title-row">
+                                    <h3 class="exp-title">COME TOGETHER</h3>
+                                    <span class="exp-category">COMMUNITY</span>
+                                </div>
+                                <p class="exp-desc">A place to skate with friends, meet people and make memories.</p>
+                            </div>
+                            <div class="exp-arrow-wrap" aria-hidden="true">
+                                <span class="exp-arrow">→</span>
+                            </div>
+                            <div class="exp-indicator-line"></div>
+                        </article>
+
+                    </div>
+
+                    <!-- Arena Bottom Action Ribbon -->
+                    <div class="arena-action-footer">
+                        <div class="action-note">
+                            <span class="action-badge">VISIT US</span>
+                            <span class="action-text">First time or seasoned quad skater — everyone has a lane
+                                here.</span>
+                        </div>
+                        <a href="#booking" class="arena-direct-cta">
+                            <span>JOIN THE SESSION</span>
+                            <span class="direct-arrow">↗</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================
+         PRICING & SESSIONS SECTION
+    ========================================== -->
+    <section id="pricing" class="pricing-section">
+
+        <!-- Subtle Ambient Glow -->
+        <div class="pricing-ambient-glow"></div>
+
+        <div class="pricing-container">
+
+            <!-- Section Header -->
+            <header class="pricing-header">
+                <div class="pricing-meta-row">
+                    <div class="pricing-kicker">
+                        <span class="kicker-pulse"></span>
+                        <span class="kicker-text">PASSES & ACCESS</span>
+                    </div>
+                    <div class="pricing-currency-badge">
+                        <span>PRICES IN NPR (रू)</span>
+                        <span class="sep">•</span>
+                        <span>QUAD SKATES & GEAR INCLUDED</span>
+                    </div>
+                </div>
+
+                <div class="pricing-title-wrap">
+                    <h2 class="pricing-headline">
+                        HONEST PASSES. <span class="text-orange-glow">ZERO FRICTION.</span>
+                    </h2>
+                    <p class="pricing-subtext">
+                        Every pass includes sanitized quad roller skates, full protective gear, and unrestricted access
+                        to the arena floor. No hidden charges.
+                    </p>
+                </div>
+
+                <!-- Interactive Pass Filter Toggle -->
+                <div class="pricing-toggle-wrap">
+                    <div class="pricing-toggle-pill" role="tablist">
+                        <button class="toggle-btn active" id="toggleSessions" role="tab" aria-selected="true">
+                            SESSION PASSES
+                        </button>
+                        <button class="toggle-btn" id="toggleMemberships" role="tab" aria-selected="false">
+                            MONTHLY & SQUADS
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Standard Session Passes Grid (Default View) -->
+            <div class="pricing-grid" id="sessionPassesGrid">
+
+                <!-- Card 01: Single Glide (1 Hour = Rs 100) -->
+                <div class="price-card">
+                    <div class="card-header">
+                        <span class="card-tier">01 // CASUAL SESSION</span>
+                        <h3 class="card-title">SINGLE GLIDE (1 HR)</h3>
+                        <p class="card-desc">Pristine hardwood rink floor time with quad skates and safety gear included.
+                        </p>
+                    </div>
+
+                    <div class="card-pricing">
+                        <span class="currency">रू</span>
+                        <span class="amount">100</span>
+                        <span class="duration">/ 1 HOUR (60 MIN)</span>
+                    </div>
+
+                    <div class="card-perks">
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>60 Minutes Rink Floor Time</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>Sanitized Quad Skates Included</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>Knee, Elbow & Wrist Guards</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>Free Secure Locker Storage</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="price-btn secondary book-pass-trigger" data-pass="Single Glide (1 Hour)" data-price="100">
+                            <span>RESERVE 1 HOUR (रू 100)</span>
+                            <span class="btn-arrow">↗</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 02: Double Glide (2 Hours = Rs 200 - Featured) -->
+                <div class="price-card featured">
+                    <div class="featured-badge">
+                        <span class="badge-dot"></span>
+                        <span>MOST POPULAR • BEST VALUE</span>
+                    </div>
+
+                    <div class="card-header">
+                        <span class="card-tier">02 // SIGNATURE SESSION</span>
+                        <h3 class="card-title">DOUBLE GLIDE (2 HRS)</h3>
+                        <p class="card-desc">Double floor time for rhythm, jam practice, and pure skate flow with complimentary perks.</p>
+                    </div>
+
+                    <div class="card-pricing">
+                        <span class="currency">रू</span>
+                        <span class="amount">200</span>
+                        <span class="duration">/ 2 HOURS (120 MIN)</span>
+                    </div>
+
+                    <div class="card-perks">
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✓</span>
+                            <span><strong>120 Minutes</strong> Full Arena Access</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✓</span>
+                            <span>Premium Quad Skates (Polyurethane Wheels)</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✓</span>
+                            <span>Pro Protective Helmet & Pad Set</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✓</span>
+                            <span>Free Secure Locker & Equipment Assistance</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✓</span>
+                            <span>Quick Posture Guidance from Floor Marshals</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="price-btn primary book-pass-trigger" data-pass="Double Glide (2 Hours)" data-price="200">
+                            <span>BOOK 2 HOURS (रू 200)</span>
+                            <span class="btn-arrow">↗</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 03: Specific Package Portal Gateway -->
+                <div class="price-card package-portal-card">
+                    <div class="card-header">
+                        <span class="card-tier">03 // PACKAGES PORTAL</span>
+                        <h3 class="card-title">SPECIAL PACKAGES</h3>
+                        <p class="card-desc">Squad 4-packs, student afternoon specials, weekend neon jams, and monthly unlimited gliders.
+                        </p>
+                    </div>
+
+                    <div class="card-pricing">
+                        <span class="currency">FROM</span>
+                        <span class="amount" style="font-size: 2.3rem;">PORTAL</span>
+                        <span class="duration">/ BUNDLES</span>
+                    </div>
+
+                    <div class="card-perks">
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✦</span>
+                            <span><strong>RollX Squad 4-Pack</strong> (Group Discount)</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✦</span>
+                            <span><strong>After-School Student Pass</strong> (रू 75/hr)</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✦</span>
+                            <span><strong>Weekend Neon Jam</strong> (3-Hour DJ Night)</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✦</span>
+                            <span><strong>Custom Crew Estimator</strong> with Promo Codes</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <a href="#packages" class="price-btn secondary portal-jump-btn">
+                            <span>EXPLORE PACKAGES PORTAL</span>
+                            <span class="btn-arrow">↓</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Memberships & Squad Passes Grid (Toggled View) -->
+            <div class="pricing-grid hidden" id="membershipPassesGrid">
+
+                <!-- Squad Pass -->
+                <div class="price-card featured">
+                    <div class="featured-badge">
+                        <span class="badge-dot"></span>
+                        <span>BEST VALUE FOR GROUPS</span>
+                    </div>
+
+                    <div class="card-header">
+                        <span class="card-tier">SQUAD // 4 SKATERS</span>
+                        <h3 class="card-title">ROLLX SQUAD 4-PACK</h3>
+                        <p class="card-desc">Roll in numbers. Designed for friends, dates, and family crews who skate together.</p>
+                    </div>
+
+                    <div class="card-pricing">
+                        <span class="currency">रू</span>
+                        <span class="amount">320</span>
+                        <span class="duration">/ 4 SKATERS (1 HR)</span>
+                    </div>
+
+                    <div class="card-perks">
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✓</span>
+                            <span><strong>4× Complete Passes</strong> (Save रू 80)</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✓</span>
+                            <span>4 Pairs of Quad Skates & Full Pads</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✓</span>
+                            <span>60 Minutes Shared Rink Floor Time</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon orange">✓</span>
+                            <span>Reserved Trackside Lounge Table</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="price-btn primary book-pass-trigger" data-pass="Squad 4-Pack (4 Skaters)" data-price="320">
+                            <span>BOOK SQUAD PASS (रू 320)</span>
+                            <span class="btn-arrow">↗</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Monthly Glider Pass -->
+                <div class="price-card">
+                    <div class="card-header">
+                        <span class="card-tier">MEMBERSHIP // MONTHLY</span>
+                        <h3 class="card-title">THE UNLIMITED GLIDER</h3>
+                        <p class="card-desc">For regulars and dedicated skaters making ROLLX their daily workout and sanctuary.</p>
+                    </div>
+
+                    <div class="card-pricing">
+                        <span class="currency">रू</span>
+                        <span class="amount">1,800</span>
+                        <span class="duration">/ MONTH</span>
+                    </div>
+
+                    <div class="card-perks">
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>Unlimited Arena Access 7 Days a Week</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>Priority VIP Queue Fast-Track</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>Free Access to All Weekend Neon Jams</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>Personal Quad Skate Locker Assignment</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="price-btn secondary book-pass-trigger" data-pass="Monthly Unlimited Glider" data-price="1800">
+                            <span>GET MONTHLY PASS (रू 1,800)</span>
+                            <span class="btn-arrow">↗</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Student / Youth Pass -->
+                <div class="price-card">
+                    <div class="card-header">
+                        <span class="card-tier">STUDENT // WEEKDAY</span>
+                        <h3 class="card-title">STUDENT AFTER-SCHOOL</h3>
+                        <p class="card-desc">Mon–Thu from 3:00 PM to 6:00 PM. Show valid student ID at check-in.</p>
+                    </div>
+
+                    <div class="card-pricing">
+                        <span class="currency">रू</span>
+                        <span class="amount">75</span>
+                        <span class="duration">/ 1 HOUR</span>
+                    </div>
+
+                    <div class="card-perks">
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>60 Min After-School Skate Session</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>Quad Skates & Helmet Included</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>Valid Mon–Thu 3 PM – 6 PM</span>
+                        </div>
+                        <div class="perk-item">
+                            <span class="perk-icon">✓</span>
+                            <span>Valid Student ID Required</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="price-btn secondary book-pass-trigger" data-pass="Student After-School (1 Hr)" data-price="75">
+                            <span>RESERVE STUDENT PASS (रू 75)</span>
+                            <span class="btn-arrow">↗</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Rental & Quality Guarantee Banner -->
+            <div class="pricing-guarantee-banner">
+                <div class="guarantee-left">
+                    <div class="guarantee-badge">
+                        <span class="quad-indicator">QUAD ONLY</span>
+                    </div>
+                    <div class="guarantee-text">
+                        <h4>BRINGING YOUR OWN QUAD SKATES?</h4>
+                        <p>Receive an automatic <strong>20% discount</strong> at check-in when you roll on your personal
+                            quad roller skates (polyurethane wheels only; must pass safety inspection).</p>
+                    </div>
+                </div>
+                <div class="guarantee-right">
+                    <div class="safety-stat">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">UV SANITIZED GEAR</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================
+         SPECIFIC PACKAGE OFFERING PORTAL
+    ========================================== -->
+    <section id="packages" class="packages-portal-section">
+        <div class="portal-ambient-glow"></div>
+
+        <div class="portal-container">
+            <!-- Header -->
+            <header class="portal-header">
+                <div class="portal-kicker">
+                    <span class="kicker-pulse"></span>
+                    <span class="kicker-text">OFFICIAL PACKAGES PORTAL</span>
+                </div>
+                <h2 class="portal-headline">
+                    SPECIFIC PACKAGE <span class="text-orange-glow">PORTAL.</span>
+                </h2>
+                <p class="portal-subtext">
+                    Custom-built packages for squad sessions, after-school student riders, monthly gliders, and weekend neon events in Lalbandi.
+                </p>
+
+                <!-- Filter Pills -->
+                <div class="portal-filters">
+                    <button class="portal-filter-btn active" data-filter="all">ALL PACKAGES</button>
+                    <button class="portal-filter-btn" data-filter="squad">SQUADS & CREWS</button>
+                    <button class="portal-filter-btn" data-filter="student">STUDENT SPECIAL</button>
+                    <button class="portal-filter-btn" data-filter="neon">NEON NIGHTS</button>
+                    <button class="portal-filter-btn" data-filter="monthly">MONTHLY GLIDER</button>
+                </div>
+            </header>
+
+            <!-- Packages Grid -->
+            <div class="packages-grid">
+                <!-- Package 1: Squad 4-Pack -->
+                <div class="package-card" data-category="squad">
+                    <div class="package-badge">SAVE 20% ON CREW</div>
+                    <div class="package-top">
+                        <span class="package-category">SQUAD BUNDLE</span>
+                        <h3 class="package-title">ROLLX SQUAD 4-PACK</h3>
+                        <p class="package-desc">Bring your group of 4. Quad skates, safety gear and rink access all ready for your crew.</p>
+                    </div>
+                    <div class="package-price-row">
+                        <div class="price-box">
+                            <span class="currency">रू</span>
+                            <span class="amount">320</span>
+                            <span class="unit">/ 4 SKATERS (1 HR)</span>
+                        </div>
+                        <span class="original-price">Regular: रू 400</span>
+                    </div>
+                    <ul class="package-specs">
+                        <li><span>✓</span> 4× Pairs of Quad Roller Skates & Pads</li>
+                        <li><span>✓</span> 60 Mins Hardwood Rink Access for 4</li>
+                        <li><span>✓</span> Reserved Trackside Lounge Seating</li>
+                        <li><span>✓</span> Free Secure Lockers for the Entire Group</li>
+                    </ul>
+                    <button class="package-cta-btn book-pass-trigger" data-pass="Squad 4-Pack (4 Skaters)" data-price="320">
+                        <span>SELECT SQUAD PACKAGE</span>
+                        <span class="arrow">↗</span>
+                    </button>
+                </div>
+
+                <!-- Package 2: Student After-School -->
+                <div class="package-card" data-category="student">
+                    <div class="package-badge student">STUDENT PERK</div>
+                    <div class="package-top">
+                        <span class="package-category">STUDENT EXCLUSIVE</span>
+                        <h3 class="package-title">AFTER-SCHOOL GLIDE</h3>
+                        <p class="package-desc">Mon–Thu from 3:00 PM to 6:00 PM. High energy unwinding after class at Lalbandi's best arena.</p>
+                    </div>
+                    <div class="package-price-row">
+                        <div class="price-box">
+                            <span class="currency">रू</span>
+                            <span class="amount">75</span>
+                            <span class="unit">/ 1 HOUR</span>
+                        </div>
+                        <span class="original-price">Regular: रू 100</span>
+                    </div>
+                    <ul class="package-specs">
+                        <li><span>✓</span> Valid Student ID Required at Check-in</li>
+                        <li><span>✓</span> Full Quad Skates & Safety Pads Included</li>
+                        <li><span>✓</span> Free Locker Access & Wi-Fi Lounge</li>
+                        <li><span>✓</span> Valid Mon–Thu: 3:00 PM – 6:00 PM</li>
+                    </ul>
+                    <button class="package-cta-btn book-pass-trigger" data-pass="Student After-School (1 Hr)" data-price="75">
+                        <span>SELECT STUDENT PACKAGE</span>
+                        <span class="arrow">↗</span>
+                    </button>
+                </div>
+
+                <!-- Package 3: Weekend Neon Night Jam -->
+                <div class="package-card featured" data-category="neon">
+                    <div class="package-badge neon">FRI & SAT NIGHTS</div>
+                    <div class="package-top">
+                        <span class="package-category">EVENING EVENT</span>
+                        <h3 class="package-title">NEON NIGHT JAM (3 HRS)</h3>
+                        <p class="package-desc">Dark room with synchronized neon lights, high-tempo rhythm beats, and electric skating vibes.</p>
+                    </div>
+                    <div class="package-price-row">
+                        <div class="price-box">
+                            <span class="currency">रू</span>
+                            <span class="amount">250</span>
+                            <span class="unit">/ 3-HOUR EVENT</span>
+                        </div>
+                        <span class="original-price">Regular: रू 300</span>
+                    </div>
+                    <ul class="package-specs">
+                        <li><span>✓</span> 3 Full Hours of Neon Skate Access</li>
+                        <li><span>✓</span> Free UV Glow Wristbands & Accessories</li>
+                        <li><span>✓</span> Pro Polyurethane Quad Skates & Pads</li>
+                        <li><span>✓</span> Curated Live DJ Soundtracks</li>
+                    </ul>
+                    <button class="package-cta-btn book-pass-trigger" data-pass="Neon Night Jam (3 Hrs)" data-price="250">
+                        <span>SELECT NEON PACKAGE</span>
+                        <span class="arrow">↗</span>
+                    </button>
+                </div>
+
+                <!-- Package 4: Monthly Unlimited Glider -->
+                <div class="package-card" data-category="monthly">
+                    <div class="package-badge">VIP MEMBERSHIP</div>
+                    <div class="package-top">
+                        <span class="package-category">30-DAY PASS</span>
+                        <h3 class="package-title">UNLIMITED MONTHLY</h3>
+                        <p class="package-desc">For skaters making ROLLX their home. Daily unrestricted floor time with VIP privileges.</p>
+                    </div>
+                    <div class="package-price-row">
+                        <div class="price-box">
+                            <span class="currency">रू</span>
+                            <span class="amount">1,800</span>
+                            <span class="unit">/ MONTH</span>
+                        </div>
+                        <span class="original-price">Unlimited Daily</span>
+                    </div>
+                    <ul class="package-specs">
+                        <li><span>✓</span> Unlimited Access 7 Days a Week</li>
+                        <li><span>✓</span> Fast-Track VIP Rink Entry Lane</li>
+                        <li><span>✓</span> Free Access to All Weekend Neon Events</li>
+                        <li><span>✓</span> Dedicated Skater Equipment Locker</li>
+                    </ul>
+                    <button class="package-cta-btn book-pass-trigger" data-pass="Monthly Unlimited Glider" data-price="1800">
+                        <span>SELECT MONTHLY PACKAGE</span>
+                        <span class="arrow">↗</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Custom Package Builder & Promo Calculator -->
+            <div class="custom-package-builder">
+                <div class="builder-intro">
+                    <span class="builder-tag">INTERACTIVE CALCULATOR</span>
+                    <h3>BUILD A CUSTOM CREW PACKAGE</h3>
+                    <p>Customize your squad size and hours. Enter your promo code to unlock instant discounts.</p>
+                </div>
+
+                <div class="builder-controls">
+                    <div class="control-group">
+                        <div class="control-label-row">
+                            <label>SKATERS IN CREW:</label>
+                            <span class="control-display-val" id="calcSkatersDisplay">4 Skaters</span>
+                        </div>
+                        <input type="range" id="calcSkaters" min="1" max="10" value="4" class="custom-range">
+                        <div class="range-labels">
+                            <span>1 Skater</span>
+                            <span>4 (Squad Discount)</span>
+                            <span>10 (Full Party)</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>SESSION DURATION</label>
+                        <div class="hours-selector">
+                            <button type="button" class="hour-btn active" data-hours="1">1 HOUR (रू 100/ea)</button>
+                            <button type="button" class="hour-btn" data-hours="2">2 HOURS (रू 200/ea)</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>PROMO CODE (OPTIONAL)</label>
+                        <div class="promo-input-wrap">
+                            <input type="text" id="calcPromo" placeholder="Try promo: ROLLX10" autocomplete="off">
+                            <button type="button" id="applyPromoBtn">APPLY</button>
+                        </div>
+                        <span class="promo-feedback" id="calcPromoFeedback"></span>
+                    </div>
+
+                    <!-- Live Total Output Box -->
+                    <div class="builder-summary-box">
+                        <div class="summary-line">
+                            <span>Standard Subtotal:</span>
+                            <span id="calcBasePrice">रू 400</span>
+                        </div>
+                        <div class="summary-line discount" id="calcDiscountLine" style="display: flex;">
+                            <span id="calcDiscountLabel">Squad Crew Perk (-20%):</span>
+                            <span id="calcDiscountAmount">- रू 80</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>TOTAL AMOUNT:</span>
+                            <span class="total-amount" id="calcFinalTotal">रू 320</span>
+                        </div>
+                        <button type="button" class="builder-proceed-btn" id="calcProceedBtn">
+                            <span>PROCEED TO BOOK PACKAGE</span>
+                            <span class="arrow">↗</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================
+         EVENTS & SESSIONS SECTION
+    ========================================== -->
+    <section id="events" class="events-section">
+        <div class="events-ambient-glow"></div>
+
+        <div class="events-container">
+            <header class="events-header">
+                <div class="events-kicker">
+                    <span class="kicker-pulse"></span>
+                    <span class="kicker-text">WEEKLY SESSIONS & CALENDAR</span>
+                </div>
+                <h2 class="events-headline">
+                    RHYTHM ON THE <span class="text-orange-glow">FLOOR.</span>
+                </h2>
+                <p class="events-subtext">
+                    Regular weekly arena sessions, beginner clinics, and weekend jams at ROLLX Lalbandi.
+                </p>
+            </header>
+
+            <div class="events-grid">
+                <!-- Event 1: Weekend Neon Jam -->
+                <article class="event-card featured">
+                    <div class="event-tag">EVERY FRI & SAT</div>
+                    <div class="event-time-badge">6:00 PM – 9:00 PM</div>
+                    <h3 class="event-title">WEEKEND NEON JAM</h3>
+                    <p class="event-desc">
+                        Our signature evening session. Ambient lighting, curated skater beats, and free neon wristbands on the polished hardwood floor.
+                    </p>
+                    <div class="event-meta">
+                        <div class="meta-item">
+                            <span class="meta-lbl">RATE</span>
+                            <strong class="meta-val">रू 250 / 3 HRS</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-lbl">GEAR</span>
+                            <span class="meta-val">Quads & Pads Included</span>
+                        </div>
+                    </div>
+                    <button class="event-cta-btn book-pass-trigger" data-pass="Neon Night Jam (3 Hrs)" data-price="250">
+                        <span>RESERVE NEON SLOT</span>
+                        <span class="btn-arrow">↗</span>
+                    </button>
+                </article>
+
+                <!-- Event 2: Sunday Beginners Clinic -->
+                <article class="event-card">
+                    <div class="event-tag">EVERY SUNDAY</div>
+                    <div class="event-time-badge">9:00 AM – 11:30 AM</div>
+                    <h3 class="event-title">BEGINNERS CLINIC</h3>
+                    <p class="event-desc">
+                        Never skated before? Step on the rink with zero fear. Our friendly floor marshals guide posture, balance, and safe rolling techniques.
+                    </p>
+                    <div class="event-meta">
+                        <div class="meta-item">
+                            <span class="meta-lbl">RATE</span>
+                            <strong class="meta-val">रू 100 / 1 HR</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-lbl">GEAR</span>
+                            <span class="meta-val">Helmets & Full Pads</span>
+                        </div>
+                    </div>
+                    <button class="event-cta-btn secondary book-pass-trigger" data-pass="Sunday Beginners Clinic (1 Hr)" data-price="100">
+                        <span>JOIN BEGINNER SESSION</span>
+                        <span class="btn-arrow">↗</span>
+                    </button>
+                </article>
+
+                <!-- Event 3: After-School Student Session -->
+                <article class="event-card">
+                    <div class="event-tag">MON TO THU</div>
+                    <div class="event-time-badge">3:00 PM – 6:00 PM</div>
+                    <h3 class="event-title">AFTER-SCHOOL SESSIONS</h3>
+                    <p class="event-desc">
+                        Unwind after class with school and college friends. Special student pass rate with free lockers and friendly indoor atmosphere.
+                    </p>
+                    <div class="event-meta">
+                        <div class="meta-item">
+                            <span class="meta-lbl">RATE</span>
+                            <strong class="meta-val">रू 75 / 1 HR</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-lbl">REQUIREMENT</span>
+                            <span class="meta-val">Valid Student ID</span>
+                        </div>
+                    </div>
+                    <button class="event-cta-btn secondary book-pass-trigger" data-pass="Student After-School (1 Hr)" data-price="75">
+                        <span>RESERVE STUDENT PASS</span>
+                        <span class="btn-arrow">↗</span>
+                    </button>
+                </article>
+            </div>
+
+            <!-- Authentic Notice Banner -->
+            <div class="events-notice-banner">
+                <div class="notice-icon">📢</div>
+                <div class="notice-text">
+                    <strong>UPCOMING SPECIAL ACTIVITIES & HOLIDAY JAMS:</strong>
+                    <span>Announced monthly on our community notice board. Standard open skating operates every day from 9:00 AM to 9:00 PM.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         COMMUNITY SECTION (ROLLX FAM)
+    ========================================== -->
+    <section id="community" class="community-section">
+        <div class="community-container">
+            
+            <div class="community-split">
+                <!-- Left: Authentic Photo of Nepali Youth Skaters -->
+                <div class="community-image-pane">
+                    <div class="community-image-frame">
+                        <img src="images/community.jpg" alt="Young Nepali roller skaters hanging out and skating together at ROLLX Lalbandi arena" class="community-img" loading="lazy">
+                        <div class="community-img-overlay"></div>
+                        <div class="community-floating-tag">
+                            <span class="tag-pin">📍</span>
+                            <span>LALBANDI, SARLAHI • ROLLER CULTURE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Content & Community Voice -->
+                <div class="community-content-pane">
+                    <div class="community-kicker">
+                        <span class="kicker-pulse"></span>
+                        <span class="kicker-text">ROLLX FAM & CULTURE</span>
+                    </div>
+
+                    <h2 class="community-headline">
+                        MORE THAN A RINK. <br>
+                        <span class="text-orange-glow">A COMMUNITY.</span>
+                    </h2>
+
+                    <blockquote class="community-quote">
+                        “ROLLX is not just a place to skate. It is a place to spend time together.”
+                    </blockquote>
+
+                    <div class="community-pillars">
+                        <div class="pillar-item">
+                            <span class="pillar-num">01</span>
+                            <div class="pillar-body">
+                                <h4>POSITIVE RECREATION FOR YOUTH</h4>
+                                <p>An active, clean, drug-free indoor space for youth and friends to move, listen to music, and bond.</p>
+                            </div>
+                        </div>
+
+                        <div class="pillar-item">
+                            <span class="pillar-num">02</span>
+                            <div class="pillar-body">
+                                <h4>ZERO-JUDGMENT RINK</h4>
+                                <p>Whether you're taking your first wobbly strides along the rail or practicing spins, everyone gets cheered on.</p>
+                            </div>
+                        </div>
+
+                        <div class="pillar-item">
+                            <span class="pillar-num">03</span>
+                            <div class="pillar-body">
+                                <h4>PROUDLY LALBANDI</h4>
+                                <p>Built in Sarlahi to give Madhesh Province a genuine, world-class indoor quad roller-skating experience.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="community-action">
+                        <a href="#booking" class="community-join-btn">
+                            <span>ROLL WITH US TODAY</span>
+                            <span class="btn-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================
+         RESERVATIONS & BOOKING SECTION
+    ========================================== -->
+    <section id="booking" class="booking-section">
+        <div class="booking-ambient-glow"></div>
+
+        <div class="booking-container">
+            <header class="booking-header">
+                <div class="booking-kicker">
+                    <span class="kicker-pulse"></span>
+                    <span class="kicker-text">FAST ONLINE RESERVATION</span>
+                </div>
+                <h2 class="booking-headline">
+                    RESERVE YOUR <span class="text-orange-glow">GLIDE.</span>
+                </h2>
+                <p class="booking-subtext">
+                    Choose your session and time slot below. Pay conveniently with cash or Fonepay QR at the arena desk upon arrival. No advance online payment needed.
+                </p>
+            </header>
+
+            <div class="booking-quick-card">
+                <div class="quick-form-grid">
+                    <div class="quick-field">
+                        <label>SELECT SESSION PASS</label>
+                        <select id="quickPassSelect" class="quick-select">
+                            <option value="Single Glide (1 Hour)" data-price="100">Single Glide (1 Hour) — रू 100</option>
+                            <option value="Double Glide (2 Hours)" data-price="200" selected>Double Glide (2 Hours) — रू 200 (Best Value)</option>
+                            <option value="Squad 4-Pack (4 Skaters)" data-price="320">Squad 4-Pack (4 Skaters) — रू 320</option>
+                            <option value="Student After-School (1 Hr)" data-price="75">Student Pass (1 Hr) — रू 75</option>
+                            <option value="Neon Night Jam (3 Hrs)" data-price="250">Weekend Neon Night (3 Hrs) — रू 250</option>
+                            <option value="Monthly Unlimited Glider" data-price="1800">Monthly Unlimited Pass — रू 1,800</option>
+                        </select>
+                    </div>
+
+                    <div class="quick-field">
+                        <label>PREFERRED TIME SLOT</label>
+                        <select id="quickSlotSelect" class="quick-select">
+                            <option value="Morning (9:00 AM – 12:00 PM)">Morning (9:00 AM – 12:00 PM)</option>
+                            <option value="Afternoon (12:00 PM – 4:00 PM)">Afternoon (12:00 PM – 4:00 PM)</option>
+                            <option value="Evening Jam (4:00 PM – 7:00 PM)" selected>Evening Jam (4:00 PM – 7:00 PM)</option>
+                            <option value="Neon Night (7:00 PM – 9:00 PM)">Neon Night (7:00 PM – 9:00 PM)</option>
+                        </select>
+                    </div>
+
+                    <div class="quick-field">
+                        <label>PAYMENT METHOD</label>
+                        <div class="payment-method-box">
+                            <span>💵 Cash or Fonepay QR at Counter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-cta-row">
+                    <div class="arena-direct-meta">
+                        <span>📍 Main Road, Lalbandi-2, Sarlahi</span>
+                        <span class="sep">•</span>
+                        <span>Open 7 Days: 9:00 AM – 9:00 PM</span>
+                    </div>
+                    <button type="button" class="quick-book-btn" id="quickProceedBtn">
+                        <span>CONTINUE RESERVATION</span>
+                        <span class="btn-arrow">↗</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         GLOBAL FOOTER
+    ========================================== -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo">
+                        ROLL<span>X</span>
+                    </a>
+                    <p class="footer-tagline">
+                        Premier indoor quad roller-skating arena in Lalbandi, Sarlahi, Nepal. Built for movement, music, and community.
+                    </p>
+                    <div class="footer-location-info">
+                        <span>📍 Lalbandi-2, Sarlahi, Madhesh Province, Nepal</span>
+                    </div>
+                </div>
+
+                <div class="footer-nav-col">
+                    <span class="footer-nav-title">EXPLORE</span>
+                    <a href="#arena">The Arena</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#packages">Special Packages</a>
+                    <a href="#events">Sessions & Events</a>
+                    <a href="#community">Community</a>
+                </div>
+
+                <div class="footer-nav-col">
+                    <span class="footer-nav-title">HOURS & HYGIENE</span>
+                    <span>Mon – Sun: 9:00 AM – 9:00 PM</span>
+                    <span>100% UV Sanitized Quad Skates</span>
+                    <span>Padded Rink & Protective Gear</span>
+                    <span>Safety Marshals on Floor</span>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">© 2026 ROLLX Arena. All rights reserved. Lalbandi, Sarlahi, Nepal.</p>
+                <div class="footer-links">
+                    <span>Quad Roller Skating Only</span>
+                    <span class="sep">•</span>
+                    <span>No Skateboards Permitted</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================
+         LOGIN & SIGN UP MODAL WINDOW
+    ========================================== -->
+    <div class="auth-modal-overlay" id="authModal" aria-hidden="true">
+        <div class="auth-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+            
+            <!-- Close Button -->
+            <button class="auth-close-btn" id="closeAuthModalBtn" aria-label="Close modal">✕</button>
+
+            <!-- Brand Header -->
+            <div class="auth-brand">
+                <div class="auth-logo">ROLL<span>X</span></div>
+                <div class="auth-pill">LALBANDI SKATER PORTAL</div>
+            </div>
+
+            <h3 class="auth-heading" id="authModalTitle">SKATER ACCESS</h3>
+            <p class="auth-sub">Sign in or register to reserve your quad skating sessions & packages.</p>
+
+            <!-- Auth Tabs Switcher -->
+            <div class="auth-tabs" role="tablist">
+                <button class="auth-tab-btn active" id="tabSignUp" role="tab" aria-selected="true">
+                    CREATE ACCOUNT
+                </button>
+                <button class="auth-tab-btn" id="tabSignIn" role="tab" aria-selected="false">
+                    SIGN IN
+                </button>
+            </div>
+
+            <!-- Sign Up Form (Compulsory: Name, Phone, Passcode. Optional: Email, Promo Code) -->
+            <form class="auth-form" id="signUpForm">
+                <!-- Full Name (Compulsory) -->
+                <div class="form-group">
+                    <label for="suName">
+                        FULL NAME <span class="required-star">* COMPULSORY</span>
+                    </label>
+                    <input type="text" id="suName" placeholder="e.g. Bipin Karki" required autocomplete="name">
+                </div>
+
+                <!-- Phone Number (Compulsory) -->
+                <div class="form-group">
+                    <label for="suPhone">
+                        PHONE NUMBER (NEPAL) <span class="required-star">* COMPULSORY</span>
+                    </label>
+                    <div class="phone-input-wrap">
+                        <span class="country-prefix">+977</span>
+                        <input type="tel" id="suPhone" placeholder="98XXXXXXXX" required pattern="[0-9]{10}" autocomplete="tel">
+                    </div>
+                    <span class="field-hint">Required for session confirmation & check-in.</span>
+                </div>
+
+                <!-- Passcode / PIN (Compulsory) -->
+                <div class="form-group">
+                    <label for="suPasscode">
+                        CREATE PASSCODE / PIN <span class="required-star">* COMPULSORY</span>
+                    </label>
+                    <input type="password" id="suPasscode" placeholder="Choose a 4 to 6 digit passcode" required minlength="4" maxlength="12">
+                </div>
+
+                <!-- Email (NOT COMPULSORY / OPTIONAL) -->
+                <div class="form-group">
+                    <label for="suEmail">
+                        EMAIL ADDRESS <span class="optional-tag">(NOT COMPULSORY / OPTIONAL)</span>
+                    </label>
+                    <input type="email" id="suEmail" placeholder="e.g. skater@gmail.com (optional)" autocomplete="email">
+                </div>
+
+                <!-- Promo Code (NOT COMPULSORY / OPTIONAL) -->
+                <div class="form-group">
+                    <label for="suPromo">
+                        PROMO CODE <span class="optional-tag">(NOT COMPULSORY / OPTIONAL)</span>
+                    </label>
+                    <input type="text" id="suPromo" placeholder="e.g. ROLLX10 (optional)">
+                </div>
+
+                <!-- Error & Success alerts -->
+                <div class="auth-alert error" id="signUpError" style="display: none;"></div>
+                <div class="auth-alert success" id="signUpSuccess" style="display: none;"></div>
+
+                <button type="submit" class="auth-submit-btn">
+                    <span>CREATE ACCOUNT & PROCEED</span>
+                    <span class="btn-arrow">↗</span>
+                </button>
+            </form>
+
+            <!-- Sign In Form -->
+            <form class="auth-form hidden" id="signInForm">
+                <!-- Phone Number -->
+                <div class="form-group">
+                    <label for="siPhone">
+                        REGISTERED PHONE NUMBER <span class="required-star">* COMPULSORY</span>
+                    </label>
+                    <div class="phone-input-wrap">
+                        <span class="country-prefix">+977</span>
+                        <input type="tel" id="siPhone" placeholder="98XXXXXXXX" required pattern="[0-9]{10}">
+                    </div>
+                </div>
+
+                <!-- Passcode -->
+                <div class="form-group">
+                    <label for="siPasscode">
+                        PASSCODE / PIN <span class="required-star">* COMPULSORY</span>
+                    </label>
+                    <input type="password" id="siPasscode" placeholder="Enter your passcode" required>
+                </div>
+
+                <!-- Error alert -->
+                <div class="auth-alert error" id="signInError" style="display: none;"></div>
+
+                <button type="submit" class="auth-submit-btn">
+                    <span>SIGN IN & CONTINUE</span>
+                    <span class="btn-arrow">↗</span>
+                </button>
+            </form>
+
+            <!-- Modal Footer Note -->
+            <div class="auth-modal-footer">
+                <span>🔒 Secure Skater Access • ROLLX Arena, Lalbandi</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         BOOKING CONFIRMATION MODAL
+    ========================================== -->
+    <div class="auth-modal-overlay" id="bookingModal" aria-hidden="true">
+        <div class="auth-modal-dialog booking-dialog" role="dialog" aria-modal="true">
+            <button class="auth-close-btn" id="closeBookingModalBtn" aria-label="Close modal">✕</button>
+
+            <div class="auth-brand">
+                <div class="auth-logo">ROLL<span>X</span></div>
+                <div class="auth-pill">CONFIRM RESERVATION</div>
+            </div>
+
+            <h3 class="auth-heading">RESERVE YOUR PASS</h3>
+            <p class="auth-sub">Review your chosen pass and finalize your slot at ROLLX Lalbandi.</p>
+
+            <div class="booking-summary-card">
+                <div class="b-row">
+                    <span class="b-lbl">SELECTED PASS:</span>
+                    <strong class="b-val" id="bookSelectedPass">Single Glide (1 Hour)</strong>
+                </div>
+                <div class="b-row">
+                    <span class="b-lbl">SKATER NAME:</span>
+                    <strong class="b-val" id="bookSkaterName">—</strong>
+                </div>
+                <div class="b-row">
+                    <span class="b-lbl">PHONE:</span>
+                    <strong class="b-val" id="bookSkaterPhone">—</strong>
+                </div>
+                <div class="b-row">
+                    <span class="b-lbl">LOCATION:</span>
+                    <span class="b-val">Lalbandi Hardwood Arena</span>
+                </div>
+                <div class="b-row total">
+                    <span class="b-lbl">TOTAL TO PAY AT RINK:</span>
+                    <strong class="b-total-val" id="bookTotalAmount">रू 100</strong>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 18px;">
+                <label for="bookPromoInput">PROMO CODE (OPTIONAL)</label>
+                <div class="promo-input-wrap">
+                    <input type="text" id="bookPromoInput" placeholder="Enter promo code (optional)">
+                    <button type="button" id="bookApplyPromoBtn">APPLY</button>
+                </div>
+                <span class="promo-feedback" id="bookPromoFeedback"></span>
+            </div>
+
+            <button type="button" class="auth-submit-btn" id="confirmBookingBtn" style="margin-top: 18px;">
+                <span>CONFIRM MY SLOT NOW</span>
+                <span class="btn-arrow">✓</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification Popup -->
+    <div class="rollx-toast" id="rollxToast">
+        <span class="toast-icon">⚡</span>
+        <span class="toast-message" id="toastMessage"></span>
+    </div>
+
+    <script src="script.js?v=6"></script>
+
+</body>
+
+</html>
