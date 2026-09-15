@@ -720,10 +720,224 @@ if (calcProceedBtn) {
 // Initial calculation
 calculateCustomPackage();
 
-// ESC key closes modals
+/* =================================
+   EVENTS FILTER CONTROLS
+================================= */
+
+const eventFilterBtns = document.querySelectorAll(".event-filter-btn");
+const eventCards = document.querySelectorAll("#eventsGrid .event-card");
+
+if (eventFilterBtns.length && eventCards.length) {
+    eventFilterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            eventFilterBtns.forEach((b) => {
+                b.classList.remove("active");
+                b.setAttribute("aria-selected", "false");
+            });
+            btn.classList.add("active");
+            btn.setAttribute("aria-selected", "true");
+
+            const filter = btn.getAttribute("data-filter");
+
+            eventCards.forEach((card) => {
+                const categories = (card.getAttribute("data-category") || "").split(" ");
+                if (filter === "all" || categories.includes(filter)) {
+                    card.style.display = "flex";
+                    // Trigger reflow for smooth entrance
+                    card.style.animation = "none";
+                    card.offsetHeight;
+                    card.style.animation = "fadeInDown 0.3s ease";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    });
+}
+
+
+/* =================================
+   COMMUNITY MODAL & REGISTRATION
+================================= */
+
+const communityModal = document.getElementById("communityModal");
+const closeCommunityModalBtn = document.getElementById("closeCommunityModalBtn");
+const communityJoinForm = document.getElementById("communityJoinForm");
+const communityFormError = document.getElementById("communityFormError");
+const communityFormSuccess = document.getElementById("communityFormSuccess");
+const cmActivitySelect = document.getElementById("cmActivity");
+
+function openCommunityModal(defaultActivity = null) {
+    if (!communityModal) return;
+    if (defaultActivity && cmActivitySelect) {
+        for (let opt of cmActivitySelect.options) {
+            if (opt.value.toLowerCase().includes(defaultActivity.toLowerCase())) {
+                cmActivitySelect.value = opt.value;
+                break;
+            }
+        }
+    }
+    if (communityFormError) communityFormError.style.display = "none";
+    if (communityFormSuccess) communityFormSuccess.style.display = "none";
+    communityModal.classList.add("open");
+    communityModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+}
+
+function closeCommunityModal() {
+    if (!communityModal) return;
+    communityModal.classList.remove("open");
+    communityModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+}
+
+// Bind triggers for Community Modal
+document.querySelectorAll(".open-community-modal-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const activity = btn.getAttribute("data-activity") || null;
+        openCommunityModal(activity);
+    });
+});
+
+if (closeCommunityModalBtn) {
+    closeCommunityModalBtn.addEventListener("click", closeCommunityModal);
+}
+
+if (communityModal) {
+    communityModal.addEventListener("click", (e) => {
+        if (e.target === communityModal) closeCommunityModal();
+    });
+}
+
+if (communityJoinForm) {
+    communityJoinForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("cmName").value.trim();
+        const ageGroup = document.getElementById("cmAgeGroup").value;
+        const contact = document.getElementById("cmContact").value.trim();
+        const activity = document.getElementById("cmActivity").value;
+
+        if (!name || !contact || !ageGroup || !activity) {
+            if (communityFormError) {
+                communityFormError.textContent = "Please fill in all required fields.";
+                communityFormError.style.display = "block";
+            }
+            return;
+        }
+
+        if (communityFormError) communityFormError.style.display = "none";
+        if (communityFormSuccess) {
+            communityFormSuccess.innerHTML = `🎉 <strong>Welcome to ROLLX Fam, ${name}!</strong><br>You are registered for <em>${activity}</em>. We'll connect with you soon.`;
+            communityFormSuccess.style.display = "block";
+        }
+
+        communityJoinForm.reset();
+        showToast(`🎉 Welcome to ROLLX Community, ${name}!`);
+
+        setTimeout(() => {
+            closeCommunityModal();
+            if (communityFormSuccess) communityFormSuccess.style.display = "none";
+        }, 3200);
+    });
+}
+
+
+/* =================================
+   QUICK BOOKING CARD PROCEED FLOW
+================================= */
+
+const quickProceedBtn = document.getElementById("quickProceedBtn");
+const quickPassSelect = document.getElementById("quickPassSelect");
+const quickSlotSelect = document.getElementById("quickSlotSelect");
+
+if (quickProceedBtn && quickPassSelect) {
+    quickProceedBtn.addEventListener("click", () => {
+        const selectedOption = quickPassSelect.options[quickPassSelect.selectedIndex];
+        const pass = selectedOption.value;
+        const price = selectedOption.getAttribute("data-price") || "100";
+        const slot = quickSlotSelect ? quickSlotSelect.value : "Standard Slot";
+
+        if (!currentUser) {
+            pendingPassSelection = { pass: `${pass} (${slot})`, price };
+            openAuthModal("signup");
+            showToast("Please sign in or register to reserve your slot.");
+        } else {
+            openBookingModal(`${pass} (${slot})`, price);
+        }
+    });
+}
+
+
+/* =================================
+   BIDIRECTIONAL SCROLL TEXT ANIMATION ENGINE
+================================= */
+
+let lastScrollY = window.scrollY || 0;
+let currentScrollDir = "down";
+const scrollProgressBar = document.getElementById("scrollProgressBar");
+
+function updateScrollMetrics() {
+    const currentY = window.scrollY || 0;
+    const delta = currentY - lastScrollY;
+
+    if (Math.abs(delta) >= 3) {
+        currentScrollDir = delta > 0 ? "down" : "up";
+        document.documentElement.setAttribute("data-scroll-dir", currentScrollDir);
+    }
+    lastScrollY = currentY;
+
+    // Update top progress bar
+    if (scrollProgressBar) {
+        const winHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = winHeight > 0 ? (currentY / winHeight) * 100 : 0;
+        scrollProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    }
+}
+
+window.addEventListener("scroll", updateScrollMetrics, { passive: true });
+updateScrollMetrics();
+
+// Bidirectional IntersectionObserver with hysteresis reset
+if ("IntersectionObserver" in window) {
+    const revealElements = document.querySelectorAll(".reveal-title, .reveal-card, .reveal-text");
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const el = entry.target;
+            const rect = entry.boundingClientRect;
+
+            if (entry.isIntersecting) {
+                el.classList.add("revealed");
+            } else {
+                // When element scrolls completely out of view, remove revealed class
+                // Allows smooth re-animation whether approaching from top or bottom
+                if (rect.top > window.innerHeight + 80 || rect.bottom < -80) {
+                    el.classList.remove("revealed");
+                }
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: "30px 0px -40px 0px"
+    });
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+} else {
+    document.querySelectorAll(".reveal-title, .reveal-card, .reveal-text").forEach((el) => {
+        el.classList.add("revealed");
+    });
+}
+
+
+/* =================================
+   GLOBAL ESCAPE KEY MODAL HANDLER
+================================= */
+
 window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
         closeAuthModal();
         closeBookingModal();
+        closeCommunityModal();
     }
 });

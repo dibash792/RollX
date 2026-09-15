@@ -19,6 +19,9 @@
 
 <body>
 
+    <!-- Top Scroll Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
     <!-- =========================================
          HERO SECTION
     ========================================== -->
@@ -905,177 +908,467 @@
     </section>
 
     <!-- =========================================
-         EVENTS & SESSIONS SECTION
+         EVENTS SECTION
     ========================================== -->
     <section id="events" class="events-section">
         <div class="events-ambient-glow"></div>
 
         <div class="events-container">
-            <header class="events-header">
+            <header class="events-header reveal-title">
                 <div class="events-kicker">
                     <span class="kicker-pulse"></span>
-                    <span class="kicker-text">WEEKLY SESSIONS & CALENDAR</span>
+                    <span class="kicker-text">EVENTS AT ROLLX</span>
                 </div>
                 <h2 class="events-headline">
-                    RHYTHM ON THE <span class="text-orange-glow">FLOOR.</span>
+                    EVENTS AT <span class="text-orange-glow">ROLLX.</span>
                 </h2>
                 <p class="events-subtext">
-                    Regular weekly arena sessions, beginner clinics, and weekend jams at ROLLX Lalbandi.
+                    Exciting skate sessions, clinics, friendly challenges, and social evenings at Lalbandi's indoor arena.
                 </p>
+
+                <!-- Filter Controls -->
+                <div class="events-filter-bar" role="tablist" aria-label="Event category filters">
+                    <button type="button" class="event-filter-btn active" data-filter="all" role="tab" aria-selected="true">
+                        ALL EVENTS
+                    </button>
+                    <button type="button" class="event-filter-btn" data-filter="beginners" role="tab" aria-selected="false">
+                        BEGINNERS
+                    </button>
+                    <button type="button" class="event-filter-btn" data-filter="families" role="tab" aria-selected="false">
+                        FAMILIES
+                    </button>
+                    <button type="button" class="event-filter-btn" data-filter="challenges" role="tab" aria-selected="false">
+                        CHALLENGES
+                    </button>
+                    <button type="button" class="event-filter-btn" data-filter="special" role="tab" aria-selected="false">
+                        SPECIAL EVENTS
+                    </button>
+                </div>
             </header>
 
-            <div class="events-grid">
-                <!-- Event 1: Weekend Neon Jam -->
-                <article class="event-card featured">
-                    <div class="event-tag">EVERY FRI & SAT</div>
-                    <div class="event-time-badge">6:00 PM – 9:00 PM</div>
-                    <h3 class="event-title">WEEKEND NEON JAM</h3>
+            <!-- Events Grid (8 Curated Cards) -->
+            <div class="events-grid" id="eventsGrid">
+
+                <!-- 1. Weekend Skate Sessions -->
+                <article class="event-card reveal-card" data-category="special">
+                    <div class="event-card-header">
+                        <span class="event-badge popular">SIGNATURE EVENT</span>
+                        <span class="event-status-pill">EVERY FRI & SAT</span>
+                    </div>
+                    <h3 class="event-title">WEEKEND SKATE SESSIONS</h3>
                     <p class="event-desc">
-                        Our signature evening session. Ambient lighting, curated skater beats, and free neon wristbands on the polished hardwood floor.
+                        Our signature evening session with ambient neon lights, rhythm beats, and open rink flow for friends and skater crews.
                     </p>
-                    <div class="event-meta">
-                        <div class="meta-item">
-                            <span class="meta-lbl">RATE</span>
-                            <strong class="meta-val">रू 250 / 3 HRS</strong>
+                    <div class="event-meta-list">
+                        <div class="meta-row">
+                            <span class="meta-icon">👥</span>
+                            <span class="meta-txt"><strong>Age Group:</strong> Ages 10+ & Youth</span>
                         </div>
-                        <div class="meta-item">
-                            <span class="meta-lbl">GEAR</span>
-                            <span class="meta-val">Quads & Pads Included</span>
+                        <div class="meta-row">
+                            <span class="meta-icon">🕒</span>
+                            <span class="meta-txt"><strong>Time:</strong> 6:00 PM – 9:00 PM</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">🛡️</span>
+                            <span class="meta-txt"><strong>Gear:</strong> Quad Skates & Pads Included</span>
                         </div>
                     </div>
-                    <button class="event-cta-btn book-pass-trigger" data-pass="Neon Night Jam (3 Hrs)" data-price="250">
-                        <span>RESERVE NEON SLOT</span>
-                        <span class="btn-arrow">↗</span>
-                    </button>
+                    <div class="event-card-footer">
+                        <button type="button" class="event-action-btn book-pass-trigger" data-pass="Weekend Skate Sessions (3 Hrs)" data-price="250">
+                            <span>JOIN EVENT</span>
+                            <span class="btn-arrow">↗</span>
+                        </button>
+                    </div>
                 </article>
 
-                <!-- Event 2: Sunday Beginners Clinic -->
-                <article class="event-card">
-                    <div class="event-tag">EVERY SUNDAY</div>
-                    <div class="event-time-badge">9:00 AM – 11:30 AM</div>
-                    <h3 class="event-title">BEGINNERS CLINIC</h3>
+                <!-- 2. Beginner Skate Day -->
+                <article class="event-card reveal-card" data-category="beginners">
+                    <div class="event-card-header">
+                        <span class="event-badge beginner">LEARN TO ROLL</span>
+                        <span class="event-status-pill">EVERY SUNDAY</span>
+                    </div>
+                    <h3 class="event-title">BEGINNER SKATE DAY</h3>
                     <p class="event-desc">
-                        Never skated before? Step on the rink with zero fear. Our friendly floor marshals guide posture, balance, and safe rolling techniques.
+                        Step onto the rink with zero fear. Floor marshals guide safe posture, balance, stopping, and smooth rolling basics.
                     </p>
-                    <div class="event-meta">
-                        <div class="meta-item">
-                            <span class="meta-lbl">RATE</span>
-                            <strong class="meta-val">रू 100 / 1 HR</strong>
+                    <div class="event-meta-list">
+                        <div class="meta-row">
+                            <span class="meta-icon">👥</span>
+                            <span class="meta-txt"><strong>Age Group:</strong> Beginners & All Ages</span>
                         </div>
-                        <div class="meta-item">
-                            <span class="meta-lbl">GEAR</span>
-                            <span class="meta-val">Helmets & Full Pads</span>
+                        <div class="meta-row">
+                            <span class="meta-icon">🕒</span>
+                            <span class="meta-txt"><strong>Time:</strong> 9:00 AM – 11:30 AM</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">🛡️</span>
+                            <span class="meta-txt"><strong>Instruction:</strong> Marshal Assistance Included</span>
                         </div>
                     </div>
-                    <button class="event-cta-btn secondary book-pass-trigger" data-pass="Sunday Beginners Clinic (1 Hr)" data-price="100">
-                        <span>JOIN BEGINNER SESSION</span>
-                        <span class="btn-arrow">↗</span>
-                    </button>
+                    <div class="event-card-footer">
+                        <button type="button" class="event-action-btn book-pass-trigger" data-pass="Beginner Skate Day (1 Hr)" data-price="100">
+                            <span>JOIN EVENT</span>
+                            <span class="btn-arrow">↗</span>
+                        </button>
+                    </div>
                 </article>
 
-                <!-- Event 3: After-School Student Session -->
-                <article class="event-card">
-                    <div class="event-tag">MON TO THU</div>
-                    <div class="event-time-badge">3:00 PM – 6:00 PM</div>
-                    <h3 class="event-title">AFTER-SCHOOL SESSIONS</h3>
+                <!-- 3. Family Skate Time -->
+                <article class="event-card reveal-card" data-category="families">
+                    <div class="event-card-header">
+                        <span class="event-badge family">FAMILY TIME</span>
+                        <span class="event-status-pill coming-soon">COMING SOON</span>
+                    </div>
+                    <h3 class="event-title">FAMILY SKATE TIME</h3>
                     <p class="event-desc">
-                        Unwind after class with school and college friends. Special student pass rate with free lockers and friendly indoor atmosphere.
+                        A gentle, relaxed-pace session designed for parents, youth, and children to experience skating together with full safety gear.
                     </p>
-                    <div class="event-meta">
-                        <div class="meta-item">
-                            <span class="meta-lbl">RATE</span>
-                            <strong class="meta-val">रू 75 / 1 HR</strong>
+                    <div class="event-meta-list">
+                        <div class="meta-row">
+                            <span class="meta-icon">👥</span>
+                            <span class="meta-txt"><strong>Age Group:</strong> Parents & Kids (All Ages)</span>
                         </div>
-                        <div class="meta-item">
-                            <span class="meta-lbl">REQUIREMENT</span>
-                            <span class="meta-val">Valid Student ID</span>
+                        <div class="meta-row">
+                            <span class="meta-icon">📅</span>
+                            <span class="meta-txt"><strong>Schedule:</strong> Saturday Afternoons (Coming Soon)</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">🛡️</span>
+                            <span class="meta-txt"><strong>Pace:</strong> Calm & Beginner Friendly</span>
                         </div>
                     </div>
-                    <button class="event-cta-btn secondary book-pass-trigger" data-pass="Student After-School (1 Hr)" data-price="75">
-                        <span>RESERVE STUDENT PASS</span>
-                        <span class="btn-arrow">↗</span>
-                    </button>
+                    <div class="event-card-footer">
+                        <button type="button" class="event-action-btn secondary open-community-modal-btn" data-activity="Family Skate Time">
+                            <span>VIEW DETAILS</span>
+                            <span class="btn-arrow">↓</span>
+                        </button>
+                    </div>
                 </article>
+
+                <!-- 4. Skate Challenges -->
+                <article class="event-card reveal-card" data-category="challenges">
+                    <div class="event-card-header">
+                        <span class="event-badge challenge">SKILL TEST</span>
+                        <span class="event-status-pill coming-soon">COMING SOON</span>
+                    </div>
+                    <h3 class="event-title">SKATE CHALLENGES</h3>
+                    <p class="event-desc">
+                        Fun obstacle slalom cones, backward gliding sprints, and balance endurance trials to push your skills with fellow local skaters.
+                    </p>
+                    <div class="event-meta-list">
+                        <div class="meta-row">
+                            <span class="meta-icon">👥</span>
+                            <span class="meta-txt"><strong>Age Group:</strong> Ages 12+ (All Skill Levels)</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">📅</span>
+                            <span class="meta-txt"><strong>Schedule:</strong> Monthly Schedule (Coming Soon)</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">🎯</span>
+                            <span class="meta-txt"><strong>Format:</strong> Agility Cones & Balance Trials</span>
+                        </div>
+                    </div>
+                    <div class="event-card-footer">
+                        <button type="button" class="event-action-btn secondary open-community-modal-btn" data-activity="Skate Challenges">
+                            <span>VIEW DETAILS</span>
+                            <span class="btn-arrow">↓</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 5. Mini Competitions -->
+                <article class="event-card reveal-card" data-category="challenges">
+                    <div class="event-card-header">
+                        <span class="event-badge challenge">ARENA CONTEST</span>
+                        <span class="event-status-pill coming-soon">COMING SOON</span>
+                    </div>
+                    <h3 class="event-title">MINI COMPETITIONS</h3>
+                    <p class="event-desc">
+                        Friendly timed laps, sprint rounds, and creative style showcases with medals, certificate recognition, and crowd cheering.
+                    </p>
+                    <div class="event-meta-list">
+                        <div class="meta-row">
+                            <span class="meta-icon">👥</span>
+                            <span class="meta-txt"><strong>Age Group:</strong> Teens & Youth (All Tiers)</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">📅</span>
+                            <span class="meta-txt"><strong>Schedule:</strong> Notice Board Announcement</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">🏆</span>
+                            <span class="meta-txt"><strong>Perks:</strong> Medals & Certificate Honors</span>
+                        </div>
+                    </div>
+                    <div class="event-card-footer">
+                        <button type="button" class="event-action-btn secondary open-community-modal-btn" data-activity="Mini Competitions">
+                            <span>VIEW DETAILS</span>
+                            <span class="btn-arrow">↓</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 6. Birthday Skate Parties -->
+                <article class="event-card reveal-card" data-category="families special">
+                    <div class="event-card-header">
+                        <span class="event-badge party">CELEBRATION</span>
+                        <span class="event-status-pill">RESERVATION OPEN</span>
+                    </div>
+                    <h3 class="event-title">BIRTHDAY SKATE PARTIES</h3>
+                    <p class="event-desc">
+                        Host your birthday party on quad wheels! Includes reserved trackside seating, sanitized quad skates for guests, and sound system.
+                    </p>
+                    <div class="event-meta-list">
+                        <div class="meta-row">
+                            <span class="meta-icon">👥</span>
+                            <span class="meta-txt"><strong>Age Group:</strong> Kids, Teens & Groups</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">📅</span>
+                            <span class="meta-txt"><strong>Timing:</strong> Pre-Booked Custom Slot</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">🎂</span>
+                            <span class="meta-txt"><strong>Includes:</strong> Lounge Table & Quad Gear</span>
+                        </div>
+                    </div>
+                    <div class="event-card-footer">
+                        <button type="button" class="event-action-btn book-pass-trigger" data-pass="Birthday Skate Party (Squad Package)" data-price="320">
+                            <span>JOIN EVENT</span>
+                            <span class="btn-arrow">↗</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 7. Holiday Special Events -->
+                <article class="event-card reveal-card" data-category="special">
+                    <div class="event-card-header">
+                        <span class="event-badge festive">FESTIVE NIGHTS</span>
+                        <span class="event-status-pill coming-soon">COMING SOON</span>
+                    </div>
+                    <h3 class="event-title">HOLIDAY SPECIAL EVENTS</h3>
+                    <p class="event-desc">
+                        Themed arena decorations, festive music tracks, light shows, and extended rink hours celebrating holidays in Lalbandi.
+                    </p>
+                    <div class="event-meta-list">
+                        <div class="meta-row">
+                            <span class="meta-icon">👥</span>
+                            <span class="meta-txt"><strong>Age Group:</strong> All Community Skaters</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">📅</span>
+                            <span class="meta-txt"><strong>Schedule:</strong> Dashain, Tihar & New Year</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">✨</span>
+                            <span class="meta-txt"><strong>Vibes:</strong> Extended Hours & Neon Lights</span>
+                        </div>
+                    </div>
+                    <div class="event-card-footer">
+                        <button type="button" class="event-action-btn secondary open-community-modal-btn" data-activity="Holiday Special Events">
+                            <span>VIEW DETAILS</span>
+                            <span class="btn-arrow">↓</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 8. Music and Skate Nights -->
+                <article class="event-card reveal-card" data-category="special">
+                    <div class="event-card-header">
+                        <span class="event-badge music">BEAT & GLIDE</span>
+                        <span class="event-status-pill coming-soon">COMING SOON</span>
+                    </div>
+                    <h3 class="event-title">MUSIC AND SKATE NIGHTS</h3>
+                    <p class="event-desc">
+                        Roll in rhythm as live local DJs and curated playlist beats take over the sound system for an unforgettable night on the hardwood.
+                    </p>
+                    <div class="event-meta-list">
+                        <div class="meta-row">
+                            <span class="meta-icon">👥</span>
+                            <span class="meta-txt"><strong>Age Group:</strong> Ages 12+ & Music Lovers</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">📅</span>
+                            <span class="meta-txt"><strong>Schedule:</strong> Bi-Weekly Weekends (Coming Soon)</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-icon">🎵</span>
+                            <span class="meta-txt"><strong>Sound:</strong> Live Soundtracks & Neon Glow</span>
+                        </div>
+                    </div>
+                    <div class="event-card-footer">
+                        <button type="button" class="event-action-btn book-pass-trigger" data-pass="Music and Skate Nights" data-price="250">
+                            <span>JOIN EVENT</span>
+                            <span class="btn-arrow">↗</span>
+                        </button>
+                    </div>
+                </article>
+
             </div>
 
             <!-- Authentic Notice Banner -->
-            <div class="events-notice-banner">
+            <div class="events-notice-banner reveal-card">
                 <div class="notice-icon">📢</div>
                 <div class="notice-text">
-                    <strong>UPCOMING SPECIAL ACTIVITIES & HOLIDAY JAMS:</strong>
-                    <span>Announced monthly on our community notice board. Standard open skating operates every day from 9:00 AM to 9:00 PM.</span>
+                    <strong>UPCOMING ACTIVITIES & REAL-TIME NOTICE:</strong>
+                    <span>Event dates, registrations, and holiday schedules are updated on our Lalbandi arena notice board. Standard open skating operates daily from 9:00 AM to 9:00 PM.</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- =========================================
-         COMMUNITY SECTION (ROLLX FAM)
+         COMMUNITY SECTION
     ========================================== -->
     <section id="community" class="community-section">
+        <div class="community-ambient-glow"></div>
+
         <div class="community-container">
-            
+            <!-- Header -->
+            <header class="community-header reveal-title">
+                <div class="community-kicker">
+                    <span class="kicker-pulse"></span>
+                    <span class="kicker-text">ROLLX FAM & CULTURE</span>
+                </div>
+                <h2 class="community-headline">
+                    MORE THAN SKATING — <span class="text-orange-glow">IT’S A COMMUNITY.</span>
+                </h2>
+                <p class="community-subtext">
+                    ROLLX is an indoor haven in Lalbandi where people meet new friends, learn skating together, improve confidence and skills, join challenges, share skating moments, support local skaters, and participate in community activities.
+                </p>
+
+                <!-- Core Activities Strip -->
+                <div class="community-values-strip" aria-label="Community core activities">
+                    <span class="val-pill">🤝 Meet New Friends</span>
+                    <span class="val-pill">🛼 Learn Skating Together</span>
+                    <span class="val-pill">⚡ Improve Confidence & Skills</span>
+                    <span class="val-pill">🏆 Join Challenges</span>
+                    <span class="val-pill">📸 Share Skating Moments</span>
+                    <span class="val-pill">❤️ Support Local Skaters</span>
+                    <span class="val-pill">🎉 Community Activities</span>
+                </div>
+            </header>
+
+            <!-- Community Split Feature & Visual -->
             <div class="community-split">
-                <!-- Left: Authentic Photo of Nepali Youth Skaters -->
-                <div class="community-image-pane">
-                    <div class="community-image-frame">
-                        <img src="images/community.jpg" alt="Young Nepali roller skaters hanging out and skating together at ROLLX Lalbandi arena" class="community-img" loading="lazy">
+                <!-- Left: Authentic Real Photo of Nepali Skaters -->
+                <div class="community-visual-pane reveal-card">
+                    <div class="community-img-frame">
+                        <img src="images/community.jpg" alt="Local youth skaters laughing, bonding, and skating together at ROLLX arena in Lalbandi" class="community-main-img" loading="lazy">
                         <div class="community-img-overlay"></div>
                         <div class="community-floating-tag">
                             <span class="tag-pin">📍</span>
                             <span>LALBANDI, SARLAHI • ROLLER CULTURE</span>
                         </div>
+                        <div class="community-quote-card">
+                            <div class="quote-symbol">“</div>
+                            <p class="quote-text">ROLLX is not just a place to skate. It is a place to spend time together, build friendships, and roll with joy.</p>
+                            <span class="quote-author">— ROLLX SKATER FAM</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Right: Content & Community Voice -->
-                <div class="community-content-pane">
-                    <div class="community-kicker">
-                        <span class="kicker-pulse"></span>
-                        <span class="kicker-text">ROLLX FAM & CULTURE</span>
-                    </div>
+                <!-- Right: 6 Community Feature Cards -->
+                <div class="community-features-pane">
+                    <div class="community-cards-grid">
 
-                    <h2 class="community-headline">
-                        MORE THAN A RINK. <br>
-                        <span class="text-orange-glow">A COMMUNITY.</span>
-                    </h2>
-
-                    <blockquote class="community-quote">
-                        “ROLLX is not just a place to skate. It is a place to spend time together.”
-                    </blockquote>
-
-                    <div class="community-pillars">
-                        <div class="pillar-item">
-                            <span class="pillar-num">01</span>
-                            <div class="pillar-body">
-                                <h4>POSITIVE RECREATION FOR YOUTH</h4>
-                                <p>An active, clean, drug-free indoor space for youth and friends to move, listen to music, and bond.</p>
+                        <!-- 1. Meet & Skate -->
+                        <div class="community-feature-card reveal-card">
+                            <div class="feature-icon-wrap">
+                                <span class="feature-icon">🤝</span>
+                            </div>
+                            <div class="feature-content">
+                                <h3 class="feature-title">MEET & SKATE</h3>
+                                <p class="feature-desc">
+                                    An open, welcoming space to connect with other skaters from Lalbandi and Sarlahi. Share advice, roll in squads, and make lasting friends.
+                                </p>
                             </div>
                         </div>
 
-                        <div class="pillar-item">
-                            <span class="pillar-num">02</span>
-                            <div class="pillar-body">
-                                <h4>ZERO-JUDGMENT RINK</h4>
-                                <p>Whether you're taking your first wobbly strides along the rail or practicing spins, everyone gets cheered on.</p>
+                        <!-- 2. Beginner Support -->
+                        <div class="community-feature-card reveal-card">
+                            <div class="feature-icon-wrap">
+                                <span class="feature-icon">🛡️</span>
+                            </div>
+                            <div class="feature-content">
+                                <h3 class="feature-title">BEGINNER SUPPORT</h3>
+                                <p class="feature-desc">
+                                    Zero judgment on our rink. Floor marshals and experienced regular skaters warmly guide newcomers with balance, posture, and patient support.
+                                </p>
                             </div>
                         </div>
 
-                        <div class="pillar-item">
-                            <span class="pillar-num">03</span>
-                            <div class="pillar-body">
-                                <h4>PROUDLY LALBANDI</h4>
-                                <p>Built in Sarlahi to give Madhesh Province a genuine, world-class indoor quad roller-skating experience.</p>
+                        <!-- 3. Local Skate Crew -->
+                        <div class="community-feature-card reveal-card">
+                            <div class="feature-icon-wrap">
+                                <span class="feature-icon">⚡</span>
+                            </div>
+                            <div class="feature-content">
+                                <h3 class="feature-title">LOCAL SKATE CREW</h3>
+                                <p class="feature-desc">
+                                    Be part of Madhesh Province's first dedicated indoor quad skating collective. Form squad groups and enjoy exclusive crew sessions.
+                                </p>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="community-action">
-                        <a href="#booking" class="community-join-btn">
-                            <span>ROLL WITH US TODAY</span>
-                            <span class="btn-arrow">↗</span>
-                        </a>
+                        <!-- 4. Community Challenges -->
+                        <div class="community-feature-card reveal-card">
+                            <div class="feature-icon-wrap">
+                                <span class="feature-icon">🏆</span>
+                            </div>
+                            <div class="feature-content">
+                                <h3 class="feature-title">COMMUNITY CHALLENGES</h3>
+                                <p class="feature-desc">
+                                    Participate in regular friendly balance cone runs, sprint trials, and fun mini contests that steadily boost your skills and confidence.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 5. Share Your Progress -->
+                        <div class="community-feature-card reveal-card">
+                            <div class="feature-icon-wrap">
+                                <span class="feature-icon">📸</span>
+                            </div>
+                            <div class="feature-content">
+                                <h3 class="feature-title">SHARE YOUR PROGRESS</h3>
+                                <p class="feature-desc">
+                                    Capture and tag your skate journey with #RollXSkate. Celebrate milestones from your very first steps to smooth backward glides.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 6. Family-Friendly Fun -->
+                        <div class="community-feature-card reveal-card">
+                            <div class="feature-icon-wrap">
+                                <span class="feature-icon">❤️</span>
+                            </div>
+                            <div class="feature-content">
+                                <h3 class="feature-title">FAMILY-FRIENDLY FUN</h3>
+                                <p class="feature-desc">
+                                    A clean, drug-free, fully sanitized and safe indoor environment suitable for youth, parents, and kids to spend quality time together.
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
+                </div>
+            </div>
+
+            <!-- Call to Action Banner -->
+            <div class="community-cta-banner reveal-card">
+                <div class="cta-content">
+                    <span class="cta-kicker">JOIN OUR SKATER FAMILY</span>
+                    <h3 class="cta-headline">Be Part of the ROLLX Community</h3>
+                    <p class="cta-sub">
+                        Whether you are stepping onto the rink for the very first time or rolling with your crew every weekend, you are welcome here. Connect with fellow skaters in Lalbandi.
+                    </p>
+                </div>
+                <div class="cta-action">
+                    <button type="button" class="community-cta-btn open-community-modal-btn">
+                        <span>JOIN THE COMMUNITY</span>
+                        <span class="btn-arrow">↗</span>
+                    </button>
                 </div>
             </div>
 
@@ -1368,6 +1661,81 @@
                 <span>CONFIRM MY SLOT NOW</span>
                 <span class="btn-arrow">✓</span>
             </button>
+        </div>
+    </div>
+
+    <!-- =========================================
+         COMMUNITY JOIN MODAL WINDOW
+    ========================================== -->
+    <div class="auth-modal-overlay" id="communityModal" aria-hidden="true">
+        <div class="auth-modal-dialog community-dialog" role="dialog" aria-modal="true" aria-labelledby="communityModalTitle">
+            <button class="auth-close-btn" id="closeCommunityModalBtn" aria-label="Close community modal">✕</button>
+
+            <div class="auth-brand">
+                <div class="auth-logo">ROLL<span>X</span></div>
+                <div class="auth-pill">LALBANDI SKATER COMMUNITY</div>
+            </div>
+
+            <h3 class="auth-heading" id="communityModalTitle">BE PART OF ROLLX FAM</h3>
+            <p class="auth-sub">Connect with fellow skaters, join jams & clinics, and receive early updates in Lalbandi.</p>
+
+            <form class="auth-form" id="communityJoinForm">
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label for="cmName">
+                        FULL NAME <span class="required-star">* REQUIRED</span>
+                    </label>
+                    <input type="text" id="cmName" placeholder="e.g. Aayush Shrestha" required autocomplete="name">
+                </div>
+
+                <!-- Age Group -->
+                <div class="form-group">
+                    <label for="cmAgeGroup">
+                        AGE GROUP <span class="required-star">* REQUIRED</span>
+                    </label>
+                    <select id="cmAgeGroup" class="quick-select" required>
+                        <option value="" disabled selected>Select your age group</option>
+                        <option value="Under 14 years">Under 14 years</option>
+                        <option value="14 – 18 years">14 – 18 years (Youth / Student)</option>
+                        <option value="19 – 25 years">19 – 25 years (Young Adult)</option>
+                        <option value="26+ years">26+ years (Adult / Parent)</option>
+                    </select>
+                </div>
+
+                <!-- Phone or Social Media -->
+                <div class="form-group">
+                    <label for="cmContact">
+                        PHONE OR SOCIAL MEDIA <span class="required-star">* REQUIRED</span>
+                    </label>
+                    <input type="text" id="cmContact" placeholder="e.g. 98XXXXXXXX or @instagram_handle" required>
+                    <span class="field-hint">We'll use this to invite you to sessions and community activities.</span>
+                </div>
+
+                <!-- Interested Activity -->
+                <div class="form-group">
+                    <label for="cmActivity">
+                        INTERESTED ACTIVITY <span class="required-star">* REQUIRED</span>
+                    </label>
+                    <select id="cmActivity" class="quick-select" required>
+                        <option value="Weekend Skate Sessions" selected>Weekend Skate Sessions</option>
+                        <option value="Beginner Skate Day">Beginner Skate Day</option>
+                        <option value="Family Skate Time">Family Skate Time</option>
+                        <option value="Skate Challenges">Skate Challenges</option>
+                        <option value="Mini Competitions">Mini Competitions</option>
+                        <option value="Music and Skate Nights">Music and Skate Nights</option>
+                        <option value="Local Skate Crew & General Jam">Local Skate Crew & General Jam</option>
+                    </select>
+                </div>
+
+                <!-- Error & Success Feedback -->
+                <div class="auth-alert error" id="communityFormError" style="display: none;"></div>
+                <div class="auth-alert success" id="communityFormSuccess" style="display: none;"></div>
+
+                <button type="submit" class="auth-submit-btn">
+                    <span>JOIN THE COMMUNITY</span>
+                    <span class="btn-arrow">↗</span>
+                </button>
+            </form>
         </div>
     </div>
 
