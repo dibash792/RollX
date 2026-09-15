@@ -844,26 +844,103 @@ if (communityJoinForm) {
 
 
 /* =================================
-   QUICK BOOKING CARD PROCEED FLOW
+   INTERACTIVE RESERVATION SECTION CONTROLLER
 ================================= */
 
-const quickProceedBtn = document.getElementById("quickProceedBtn");
-const quickPassSelect = document.getElementById("quickPassSelect");
-const quickSlotSelect = document.getElementById("quickSlotSelect");
+let activeResPass = "Double Glide (2 Hours)";
+let activeResPrice = "200";
+let activeResSlot = "Evening Jam (4:00 PM – 7:00 PM)";
 
-if (quickProceedBtn && quickPassSelect) {
-    quickProceedBtn.addEventListener("click", () => {
-        const selectedOption = quickPassSelect.options[quickPassSelect.selectedIndex];
-        const pass = selectedOption.value;
-        const price = selectedOption.getAttribute("data-price") || "100";
-        const slot = quickSlotSelect ? quickSlotSelect.value : "Standard Slot";
+const passCards = document.querySelectorAll(".pass-option-card");
+const slotCards = document.querySelectorAll(".slot-option-card");
+const resPillPass = document.getElementById("resPillPass");
+const resPillSlot = document.getElementById("resPillSlot");
+const resPillPrice = document.getElementById("resPillPrice");
+const resValidationMsg = document.getElementById("resValidationMsg");
+const continueReservationBtn = document.getElementById("continueReservationBtn");
+
+// Session Pass Selection
+passCards.forEach((card) => {
+    function selectPass() {
+        passCards.forEach((c) => {
+            c.classList.remove("selected");
+            c.setAttribute("aria-checked", "false");
+        });
+        card.classList.add("selected");
+        card.setAttribute("aria-checked", "true");
+
+        activeResPass = card.getAttribute("data-pass");
+        activeResPrice = card.getAttribute("data-price");
+
+        if (resPillPass) resPillPass.textContent = activeResPass;
+        if (resPillPrice) resPillPrice.textContent = `रू ${activeResPrice}`;
+        if (resValidationMsg) resValidationMsg.style.display = "none";
+    }
+
+    card.addEventListener("click", selectPass);
+    card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            selectPass();
+        }
+    });
+});
+
+// Time Slot Selection
+slotCards.forEach((card) => {
+    function selectSlot() {
+        slotCards.forEach((c) => {
+            c.classList.remove("selected");
+            c.setAttribute("aria-checked", "false");
+        });
+        card.classList.add("selected");
+        card.setAttribute("aria-checked", "true");
+
+        activeResSlot = card.getAttribute("data-slot");
+
+        if (resPillSlot) resPillSlot.textContent = activeResSlot;
+        if (resValidationMsg) resValidationMsg.style.display = "none";
+    }
+
+    card.addEventListener("click", selectSlot);
+    card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            selectSlot();
+        }
+    });
+});
+
+// Continue Reservation Button with validation & confirmation summary
+if (continueReservationBtn) {
+    continueReservationBtn.addEventListener("click", () => {
+        // Validation check
+        if (!activeResPass) {
+            if (resValidationMsg) {
+                resValidationMsg.textContent = "Please select a session pass above.";
+                resValidationMsg.style.display = "block";
+            }
+            return;
+        }
+
+        if (!activeResSlot) {
+            if (resValidationMsg) {
+                resValidationMsg.textContent = "Please select a preferred time slot above.";
+                resValidationMsg.style.display = "block";
+            }
+            return;
+        }
+
+        if (resValidationMsg) resValidationMsg.style.display = "none";
+
+        const passSummary = `${activeResPass} • ${activeResSlot}`;
 
         if (!currentUser) {
-            pendingPassSelection = { pass: `${pass} (${slot})`, price };
+            pendingPassSelection = { pass: passSummary, price: activeResPrice };
             openAuthModal("signup");
-            showToast("Please sign in or register to reserve your slot.");
+            showToast("Please sign in or register to finalize your reservation.");
         } else {
-            openBookingModal(`${pass} (${slot})`, price);
+            openBookingModal(passSummary, activeResPrice);
         }
     });
 }
