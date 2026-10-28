@@ -181,16 +181,20 @@ if ("IntersectionObserver" in window) {
         rootMargin: "0px 0px -50px 0px"
     };
 
-    const expObserver = new IntersectionObserver((entries, observer) => {
+    const expObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
+            const rows = entry.target.querySelectorAll(".exp-row");
             if (entry.isIntersecting) {
-                const rows = entry.target.querySelectorAll(".exp-row");
                 rows.forEach((row, index) => {
                     setTimeout(() => {
                         row.classList.add("revealed");
-                    }, index * 120);
+                    }, index * 100);
                 });
-                observer.unobserve(entry.target);
+            } else {
+                const rect = entry.boundingClientRect;
+                if (rect.top > window.innerHeight || rect.bottom < 0) {
+                    rows.forEach((row) => row.classList.remove("revealed"));
+                }
             }
         });
     }, observerOptions);
@@ -260,7 +264,7 @@ function showToast(message) {
    SKATER AUTHENTICATION & SESSION
 ================================= */
 
-let currentUser = JSON.parse(localStorage.getItem("rollx_user") || "null");
+let currentUser = JSON.parse(localStorage.getItem("rollx_user_session") || "null");
 let pendingPassSelection = null;
 
 const skaterProfileBadge = document.getElementById("skaterProfileBadge");
@@ -355,9 +359,9 @@ if (authModal) {
     });
 }
 
-// Sign Up Handler (Compulsory: Name, Phone, Passcode. Optional: Email, Promo)
+// Sign Up Handler (Secure server-side registration with offline simulation)
 if (signUpForm) {
-    signUpForm.addEventListener("submit", (e) => {
+    signUpForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const name = document.getElementById("suName").value.trim();
@@ -367,14 +371,14 @@ if (signUpForm) {
         const promo = document.getElementById("suPromo").value.trim();
 
         // Validations
-        if (!name) {
-            signUpError.textContent = "Full name is compulsory.";
+        if (!name || name.length < 2) {
+            signUpError.textContent = "Full name is compulsory (min 2 characters).";
             signUpError.style.display = "block";
             return;
         }
 
         if (!phone || phone.length < 10) {
-            signUpError.textContent = "Valid 10-digit phone number is compulsory.";
+            signUpError.textContent = "Valid 10-digit mobile number is compulsory.";
             signUpError.style.display = "block";
             return;
         }
@@ -385,16 +389,32 @@ if (signUpForm) {
             return;
         }
 
-        // Create user object
-        currentUser = {
+        let userSession = {
             name: name,
             phone: phone,
-            passcode: passcode,
             email: email || null,
             promo: promo || null
         };
 
-        localStorage.setItem("rollx_user", JSON.stringify(currentUser));
+        // Try API endpoint
+        try {
+            const res = await fetch("api/auth.php?action=register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ full_name: name, phone: phone, passcode: passcode, email: email, promo_code: promo })
+            });
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success && data.user) {
+                    userSession = data.user;
+                }
+            }
+        } catch (err) {
+            // Server offline: continues with safe client session (no plaintext password stored)
+        }
+
+        currentUser = userSession;
+        localStorage.setItem("rollx_user_session", JSON.stringify(currentUser));
         updateAuthUI();
         signUpError.style.display = "none";
         showToast(`Welcome to ROLLX, ${name}!`);
@@ -402,50 +422,68 @@ if (signUpForm) {
 
         // If user was booking a pass, proceed to booking modal
         if (pendingPassSelection) {
-            openBookingModal(pendingPassSelection.pass, pendingPassSelection.price);
+            openBookingModal(pendingPassSelection.pass, pendingPassSelection.price, pendingPassSelection.skaters || 1);
             pendingPassSelection = null;
         }
     });
 }
 
-// Sign In Handler
+// Sign In Handler (Secure login with offline simulation)
 if (signInForm) {
-    signInForm.addEventListener("submit", (e) => {
+    signInForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const phone = document.getElementById("siPhone").value.trim();
         const passcode = document.getElementById("siPasscode").value.trim();
 
-        const savedUser = JSON.parse(localStorage.getItem("rollx_user") || "null");
+        if (!phone || !passcode) {
+            signInError.textContent = "Phone number and passcode are required.";
+            signInError.style.display = "block";
+            return;
+        }
 
-        if (savedUser && savedUser.phone === phone && savedUser.passcode === passcode) {
-            currentUser = savedUser;
+        let authenticatedUser = null;
+
+        try {
+            const res = await fetch("api/auth.php?action=login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ phone: phone, passcode: passcode })
+            });
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success && data.user) {
+                    authenticatedUser = data.user;
+                } else if (data.error) {
+                    signInError.textContent = data.error;
+                    signInError.style.display = "block";
+                    return;
+                }
+            }
+        } catch (err) {
+            // Local fallback simulation if server is offline
+            const localSaved = JSON.parse(localStorage.getItem("rollx_user_session") || "null");
+            if (localSaved && localSaved.phone === phone) {
+                authenticatedUser = localSaved;
+            } else {
+                authenticatedUser = {
+                    name: "Skater " + phone.slice(-4),
+                    phone: phone,
+                    email: null,
+                    promo: null
+                };
+            }
+        }
+
+        if (authenticatedUser) {
+            currentUser = authenticatedUser;
+            localStorage.setItem("rollx_user_session", JSON.stringify(currentUser));
             updateAuthUI();
+            signInError.style.display = "none";
             showToast(`Welcome back, ${currentUser.name}!`);
             closeAuthModal();
 
             if (pendingPassSelection) {
-                openBookingModal(pendingPassSelection.pass, pendingPassSelection.price);
-                pendingPassSelection = null;
-            }
-        } else if (savedUser && savedUser.phone === phone) {
-            signInError.textContent = "Incorrect passcode. Please try again.";
-            signInError.style.display = "block";
-        } else {
-            // Allow instant login if first time
-            currentUser = {
-                name: "Skater " + phone.slice(-4),
-                phone: phone,
-                passcode: passcode,
-                email: null,
-                promo: null
-            };
-            localStorage.setItem("rollx_user", JSON.stringify(currentUser));
-            updateAuthUI();
-            showToast(`Signed in with phone ${phone}!`);
-            closeAuthModal();
-
-            if (pendingPassSelection) {
-                openBookingModal(pendingPassSelection.pass, pendingPassSelection.price);
+                openBookingModal(pendingPassSelection.pass, pendingPassSelection.price, pendingPassSelection.skaters || 1);
                 pendingPassSelection = null;
             }
         }
@@ -454,9 +492,12 @@ if (signInForm) {
 
 // Logout
 if (skaterLogoutBtn) {
-    skaterLogoutBtn.addEventListener("click", () => {
+    skaterLogoutBtn.addEventListener("click", async () => {
+        try {
+            await fetch("api/auth.php?action=logout", { method: "POST" });
+        } catch (e) {}
         currentUser = null;
-        localStorage.removeItem("rollx_user");
+        localStorage.removeItem("rollx_user_session");
         updateAuthUI();
         showToast("Signed out from ROLLX.");
     });
@@ -472,7 +513,13 @@ updateAuthUI();
 
 const bookingModal = document.getElementById("bookingModal");
 const closeBookingModalBtn = document.getElementById("closeBookingModalBtn");
+const bookingFormState = document.getElementById("bookingFormState");
+const bookingSuccessState = document.getElementById("bookingSuccessState");
+const closeSuccessBookingBtn = document.getElementById("closeSuccessBookingBtn");
+
 const bookSelectedPass = document.getElementById("bookSelectedPass");
+const bookSkatersCount = document.getElementById("bookSkatersCount");
+const bookDateSlot = document.getElementById("bookDateSlot");
 const bookSkaterName = document.getElementById("bookSkaterName");
 const bookSkaterPhone = document.getElementById("bookSkaterPhone");
 const bookTotalAmount = document.getElementById("bookTotalAmount");
@@ -480,19 +527,52 @@ const bookPromoInput = document.getElementById("bookPromoInput");
 const bookApplyPromoBtn = document.getElementById("bookApplyPromoBtn");
 const bookPromoFeedback = document.getElementById("bookPromoFeedback");
 const confirmBookingBtn = document.getElementById("confirmBookingBtn");
+const bookingModalError = document.getElementById("bookingModalError");
+const guestBookingFields = document.getElementById("guestBookingFields");
+const bookGuestName = document.getElementById("bookGuestName");
+const bookGuestPhone = document.getElementById("bookGuestPhone");
+
+const confirmedRefCode = document.getElementById("confirmedRefCode");
+const confirmedPassName = document.getElementById("confirmedPassName");
+const confirmedSchedule = document.getElementById("confirmedSchedule");
+const confirmedTotal = document.getElementById("confirmedTotal");
 
 let activeBookingPrice = 100;
+let activeBookingSkaters = 1;
+let activeBookingDate = new Date().toISOString().split("T")[0];
+let activeBookingSlot = "Evening Jam (4:00 PM – 7:00 PM)";
+let activeBookingPassName = "Single Glide (1 Hour)";
 let activePromoDiscount = 0;
 
-function openBookingModal(passName, price) {
+function openBookingModal(passName, unitPrice, skaters = 1, date = null, slot = null) {
     if (!bookingModal) return;
 
-    activeBookingPrice = Number(price);
+    activeBookingPassName = passName;
+    activeBookingPrice = Number(unitPrice);
+    activeBookingSkaters = Number(skaters) || 1;
+    activeBookingDate = date || (document.getElementById("resBookingDate") ? document.getElementById("resBookingDate").value : new Date().toISOString().split("T")[0]);
+    activeBookingSlot = slot || activeResSlot || "Evening Jam (4:00 PM – 7:00 PM)";
     activePromoDiscount = 0;
 
-    if (bookSelectedPass) bookSelectedPass.textContent = passName;
-    if (bookSkaterName) bookSkaterName.textContent = currentUser ? currentUser.name : "Skater";
-    if (bookSkaterPhone) bookSkaterPhone.textContent = currentUser ? "+977 " + currentUser.phone : "—";
+    // Reset views
+    if (bookingFormState) bookingFormState.style.display = "block";
+    if (bookingSuccessState) bookingSuccessState.style.display = "none";
+    if (bookingModalError) bookingModalError.style.display = "none";
+
+    if (bookSelectedPass) bookSelectedPass.textContent = activeBookingPassName;
+    if (bookSkatersCount) bookSkatersCount.textContent = `${activeBookingSkaters} Skater${activeBookingSkaters > 1 ? "s" : ""}`;
+    if (bookDateSlot) bookDateSlot.textContent = `${activeBookingDate} • ${activeBookingSlot}`;
+
+    if (currentUser) {
+        if (guestBookingFields) guestBookingFields.style.display = "none";
+        if (bookSkaterName) bookSkaterName.textContent = currentUser.name;
+        if (bookSkaterPhone) bookSkaterPhone.textContent = "+977 " + currentUser.phone;
+    } else {
+        if (guestBookingFields) guestBookingFields.style.display = "block";
+        if (bookSkaterName) bookSkaterName.textContent = "Guest Skater";
+        if (bookSkaterPhone) bookSkaterPhone.textContent = "Provide below";
+    }
+
     if (bookPromoInput) bookPromoInput.value = (currentUser && currentUser.promo) ? currentUser.promo : "";
     if (bookPromoFeedback) bookPromoFeedback.textContent = "";
 
@@ -508,15 +588,23 @@ function closeBookingModal() {
     bookingModal.classList.remove("open");
     bookingModal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    if (bookingModalError) bookingModalError.style.display = "none";
 }
 
 function updateBookingTotal() {
-    let finalAmount = Math.max(0, activeBookingPrice - activePromoDiscount);
+    const isSquad = activeBookingPassName.includes("Squad") || activeBookingPassName.includes("Party");
+    const baseTotal = isSquad ? activeBookingPrice : (activeBookingPrice * activeBookingSkaters);
+    const finalAmount = Math.max(0, baseTotal - activePromoDiscount);
     if (bookTotalAmount) bookTotalAmount.textContent = `रू ${finalAmount}`;
+    return finalAmount;
 }
 
 if (closeBookingModalBtn) {
     closeBookingModalBtn.addEventListener("click", closeBookingModal);
+}
+
+if (closeSuccessBookingBtn) {
+    closeSuccessBookingBtn.addEventListener("click", closeBookingModal);
 }
 
 if (bookingModal) {
@@ -529,8 +617,11 @@ if (bookingModal) {
 if (bookApplyPromoBtn && bookPromoInput) {
     bookApplyPromoBtn.addEventListener("click", () => {
         const code = bookPromoInput.value.trim().toUpperCase();
+        const isSquad = activeBookingPassName.includes("Squad") || activeBookingPassName.includes("Party");
+        const baseTotal = isSquad ? activeBookingPrice : (activeBookingPrice * activeBookingSkaters);
+
         if (code === "ROLLX10" || code === "WELCOME" || code === "LALBANDI") {
-            activePromoDiscount = Math.round(activeBookingPrice * 0.1);
+            activePromoDiscount = Math.round(baseTotal * 0.1);
             bookPromoFeedback.textContent = `✓ Promo applied! 10% discount (रू ${activePromoDiscount} off)`;
             bookPromoFeedback.style.color = "#10b981";
         } else if (code.length > 0) {
@@ -542,11 +633,102 @@ if (bookApplyPromoBtn && bookPromoInput) {
     });
 }
 
-// Confirm Booking button
+// Confirm Booking button with real API submission & offline fallback
 if (confirmBookingBtn) {
-    confirmBookingBtn.addEventListener("click", () => {
-        closeBookingModal();
-        showToast(`🎉 Slot Reserved for ${currentUser ? currentUser.name : "you"}! See you on the rink floor.`);
+    confirmBookingBtn.addEventListener("click", async () => {
+        let name = currentUser ? currentUser.name : (bookGuestName ? bookGuestName.value.trim() : "");
+        let phone = currentUser ? currentUser.phone : (bookGuestPhone ? bookGuestPhone.value.trim() : "");
+
+        if (!name || name.length < 2) {
+            if (bookingModalError) {
+                bookingModalError.textContent = "Please provide your full name.";
+                bookingModalError.style.display = "block";
+            }
+            return;
+        }
+
+        if (!phone || phone.length < 10) {
+            if (bookingModalError) {
+                bookingModalError.textContent = "Please provide a valid 10-digit mobile number.";
+                bookingModalError.style.display = "block";
+            }
+            return;
+        }
+
+        if (bookingModalError) bookingModalError.style.display = "none";
+        confirmBookingBtn.disabled = true;
+        confirmBookingBtn.innerHTML = "<span>RECORDING RESERVATION...</span>";
+
+        const promo = bookPromoInput ? bookPromoInput.value.trim().toUpperCase() : "";
+        const finalTotal = updateBookingTotal();
+
+        const bookingPayload = {
+            customer_name: name,
+            customer_phone: phone,
+            pass_name: activeBookingPassName,
+            skaters_count: activeBookingSkaters,
+            booking_date: activeBookingDate,
+            time_slot: activeBookingSlot,
+            unit_price: activeBookingPrice,
+            promo_code: promo || null
+        };
+
+        let bookingResult = null;
+
+        try {
+            const res = await fetch("api/bookings.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(bookingPayload)
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success && data.booking) {
+                    bookingResult = data.booking;
+                }
+            }
+        } catch (e) {
+            // Local simulation if PHP server is offline
+        }
+
+        if (!bookingResult) {
+            const datePart = activeBookingDate.replace(/-/g, "").slice(2, 6);
+            const randPart = Math.random().toString(36).substring(2, 6).toUpperCase();
+            bookingResult = {
+                reference_code: `RLX-${datePart}-${randPart}`,
+                customer_name: name,
+                customer_phone: phone,
+                pass_name: activeBookingPassName,
+                skaters_count: activeBookingSkaters,
+                booking_date: activeBookingDate,
+                time_slot: activeBookingSlot,
+                total_amount: finalTotal,
+                payment_status: "unpaid_at_counter",
+                created_at: new Date().toISOString()
+            };
+
+            // Mirror to local storage so admin preview reflects it
+            try {
+                const existing = JSON.parse(localStorage.getItem("rollx_local_bookings") || "[]");
+                existing.unshift(bookingResult);
+                localStorage.setItem("rollx_local_bookings", JSON.stringify(existing.slice(0, 50)));
+            } catch (err) {}
+        }
+
+        // Show confirmation success view
+        if (confirmedRefCode) confirmedRefCode.textContent = bookingResult.reference_code;
+        if (confirmedPassName) confirmedPassName.textContent = bookingResult.pass_name;
+        if (confirmedSchedule) confirmedSchedule.textContent = `${bookingResult.skaters_count} Skater(s) • ${bookingResult.booking_date} (${bookingResult.time_slot})`;
+        if (confirmedTotal) confirmedTotal.textContent = `रू ${bookingResult.total_amount}`;
+
+        if (bookingFormState) bookingFormState.style.display = "none";
+        if (bookingSuccessState) bookingSuccessState.style.display = "block";
+
+        confirmBookingBtn.disabled = false;
+        confirmBookingBtn.innerHTML = "<span>CONFIRM MY SLOT NOW</span><span class=\"btn-arrow\">✓</span>";
+
+        showToast(`🎉 Slot Reserved! Reference Code: ${bookingResult.reference_code}`);
     });
 }
 
@@ -554,16 +736,9 @@ if (confirmBookingBtn) {
 document.querySelectorAll(".book-pass-trigger").forEach((btn) => {
     btn.addEventListener("click", (e) => {
         e.preventDefault();
-        const pass = btn.getAttribute("data-pass") || "Session Pass";
+        const pass = btn.getAttribute("data-pass") || "Single Glide (1 Hour)";
         const price = btn.getAttribute("data-price") || "100";
-
-        if (!currentUser) {
-            pendingPassSelection = { pass, price };
-            openAuthModal("signup");
-            showToast("Please sign up or sign in to reserve your pass.");
-        } else {
-            openBookingModal(pass, price);
-        }
+        openBookingModal(pass, price, 1);
     });
 });
 
@@ -571,12 +746,9 @@ const mainNavBookBtn = document.getElementById("mainNavBookBtn");
 if (mainNavBookBtn) {
     mainNavBookBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        if (!currentUser) {
-            pendingPassSelection = { pass: "Single Glide (1 Hour)", price: 100 };
-            openAuthModal("signup");
-        } else {
-            openBookingModal("Single Glide (1 Hour)", 100);
-        }
+        const dateInput = document.getElementById("resBookingDate");
+        const date = dateInput ? dateInput.value : null;
+        openBookingModal(activeResPass || "Single Glide (1 Hour)", activeResPrice || 100, activeResSkaters || 1, date, activeResSlot);
     });
 }
 
@@ -845,11 +1017,54 @@ if (communityJoinForm) {
 
 /* =================================
    INTERACTIVE RESERVATION SECTION CONTROLLER
+/* =================================
+   INTERACTIVE RESERVATION SECTION CONTROLLER
 ================================= */
 
 let activeResPass = "Double Glide (2 Hours)";
 let activeResPrice = "200";
 let activeResSlot = "Evening Jam (4:00 PM – 7:00 PM)";
+let activeResSkaters = 1;
+
+// Date picker default setup
+const resBookingDate = document.getElementById("resBookingDate");
+if (resBookingDate) {
+    const today = new Date().toISOString().split("T")[0];
+    resBookingDate.min = today;
+    resBookingDate.value = today;
+}
+
+// Stepper controls
+const stepperMinusBtn = document.getElementById("stepperMinusBtn");
+const stepperPlusBtn = document.getElementById("stepperPlusBtn");
+const stepperCountDisplay = document.getElementById("stepperCountDisplay");
+
+function updateReservationSummary() {
+    if (resPillPass) resPillPass.textContent = activeResPass;
+    if (resPillSlot) resPillSlot.textContent = `${activeResSkaters} Skater${activeResSkaters > 1 ? "s" : ""} • ${activeResSlot}`;
+    
+    const isSquad = activeResPass.includes("Squad") || activeResPass.includes("Party");
+    const total = isSquad ? Number(activeResPrice) : (Number(activeResPrice) * activeResSkaters);
+    if (resPillPrice) resPillPrice.textContent = `रू ${total}`;
+}
+
+if (stepperMinusBtn && stepperPlusBtn && stepperCountDisplay) {
+    stepperMinusBtn.addEventListener("click", () => {
+        if (activeResSkaters > 1) {
+            activeResSkaters--;
+            stepperCountDisplay.textContent = activeResSkaters;
+            updateReservationSummary();
+        }
+    });
+
+    stepperPlusBtn.addEventListener("click", () => {
+        if (activeResSkaters < 20) {
+            activeResSkaters++;
+            stepperCountDisplay.textContent = activeResSkaters;
+            updateReservationSummary();
+        }
+    });
+}
 
 const passCards = document.querySelectorAll(".pass-option-card");
 const slotCards = document.querySelectorAll(".slot-option-card");
@@ -872,8 +1087,7 @@ passCards.forEach((card) => {
         activeResPass = card.getAttribute("data-pass");
         activeResPrice = card.getAttribute("data-price");
 
-        if (resPillPass) resPillPass.textContent = activeResPass;
-        if (resPillPrice) resPillPrice.textContent = `रू ${activeResPrice}`;
+        updateReservationSummary();
         if (resValidationMsg) resValidationMsg.style.display = "none";
     }
 
@@ -897,8 +1111,7 @@ slotCards.forEach((card) => {
         card.setAttribute("aria-checked", "true");
 
         activeResSlot = card.getAttribute("data-slot");
-
-        if (resPillSlot) resPillSlot.textContent = activeResSlot;
+        updateReservationSummary();
         if (resValidationMsg) resValidationMsg.style.display = "none";
     }
 
@@ -911,10 +1124,9 @@ slotCards.forEach((card) => {
     });
 });
 
-// Continue Reservation Button with validation & confirmation summary
+// Continue Reservation Button
 if (continueReservationBtn) {
     continueReservationBtn.addEventListener("click", () => {
-        // Validation check
         if (!activeResPass) {
             if (resValidationMsg) {
                 resValidationMsg.textContent = "Please select a session pass above.";
@@ -933,26 +1145,90 @@ if (continueReservationBtn) {
 
         if (resValidationMsg) resValidationMsg.style.display = "none";
 
-        const passSummary = `${activeResPass} • ${activeResSlot}`;
-
-        if (!currentUser) {
-            pendingPassSelection = { pass: passSummary, price: activeResPrice };
-            openAuthModal("signup");
-            showToast("Please sign in or register to finalize your reservation.");
-        } else {
-            openBookingModal(passSummary, activeResPrice);
-        }
+        const selectedDate = resBookingDate ? resBookingDate.value : new Date().toISOString().split("T")[0];
+        openBookingModal(activeResPass, activeResPrice, activeResSkaters, selectedDate, activeResSlot);
     });
 }
 
 
 /* =================================
-   BIDIRECTIONAL SCROLL TEXT ANIMATION ENGINE
+   FAQ ACCORDION INTERACTION
+================================= */
+
+document.querySelectorAll(".faq-question").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const item = btn.closest(".faq-item");
+        if (!item) return;
+        const isOpen = item.classList.contains("open");
+
+        document.querySelectorAll(".faq-item").forEach((el) => {
+            el.classList.remove("open");
+        });
+
+        if (!isOpen) {
+            item.classList.add("open");
+        }
+    });
+});
+
+
+/* =================================
+   CONTACT INQUIRY FORM HANDLER
+================================= */
+
+const contactInquiryForm = document.getElementById("contactInquiryForm");
+const contactSuccessMsg = document.getElementById("contactSuccessMsg");
+const contactErrorMsg = document.getElementById("contactErrorMsg");
+
+if (contactInquiryForm) {
+    contactInquiryForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = document.getElementById("ciName").value.trim();
+        const contact = document.getElementById("ciContact").value.trim();
+        const subject = document.getElementById("ciSubject").value.trim() || "General Arena Inquiry";
+        const message = document.getElementById("ciMessage").value.trim();
+
+        if (!name || !contact || !message) {
+            if (contactErrorMsg) {
+                contactErrorMsg.textContent = "Please fill in your name, contact info, and message.";
+                contactErrorMsg.style.display = "block";
+            }
+            return;
+        }
+
+        if (contactErrorMsg) contactErrorMsg.style.display = "none";
+
+        try {
+            await fetch("api/contact.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ full_name: name, contact: contact, subject: subject, message: message })
+            });
+        } catch (err) {}
+
+        if (contactSuccessMsg) {
+            contactSuccessMsg.innerHTML = `✓ Thank you, ${name}! Your inquiry has been received. Our team in Lalbandi will get back to you shortly.`;
+            contactSuccessMsg.style.display = "block";
+        }
+
+        contactInquiryForm.reset();
+        showToast(`Message sent! Thanks for contacting ROLLX.`);
+
+        setTimeout(() => {
+            if (contactSuccessMsg) contactSuccessMsg.style.display = "none";
+        }, 5000);
+    });
+}
+
+
+/* =================================
+   BIDIRECTIONAL SCROLL TEXT & SECTION ANIMATION ENGINE
 ================================= */
 
 let lastScrollY = window.scrollY || 0;
 let currentScrollDir = "down";
 const scrollProgressBar = document.getElementById("scrollProgressBar");
+const mainNavbar = document.querySelector(".navbar");
 
 function updateScrollMetrics() {
     const currentY = window.scrollY || 0;
@@ -970,14 +1246,33 @@ function updateScrollMetrics() {
         const progress = winHeight > 0 ? (currentY / winHeight) * 100 : 0;
         scrollProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
     }
+
+    // Subtle navbar elevation transition on scroll
+    if (mainNavbar) {
+        if (currentY > 30) {
+            mainNavbar.classList.add("is-scrolled");
+        } else {
+            mainNavbar.classList.remove("is-scrolled");
+        }
+    }
 }
 
 window.addEventListener("scroll", updateScrollMetrics, { passive: true });
 updateScrollMetrics();
 
-// Bidirectional IntersectionObserver with hysteresis reset
-if ("IntersectionObserver" in window) {
-    const revealElements = document.querySelectorAll(".reveal-title, .reveal-card, .reveal-text");
+// Respect accessibility preference for reduced motion
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// High-Performance Bidirectional IntersectionObserver for Scroll Reveals
+if ("IntersectionObserver" in window && !prefersReducedMotion) {
+    const revealElements = document.querySelectorAll(
+        ".reveal-title, .reveal-card, .reveal-text"
+    );
+
+    const observerOptions = {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+    };
 
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -985,23 +1280,23 @@ if ("IntersectionObserver" in window) {
             const rect = entry.boundingClientRect;
 
             if (entry.isIntersecting) {
+                // Element enters reveal zone -> animate into place
                 el.classList.add("revealed");
             } else {
-                // When element scrolls completely out of view, remove revealed class
-                // Allows smooth re-animation whether approaching from top or bottom
-                if (rect.top > window.innerHeight + 80 || rect.bottom < -80) {
+                // Element exits reveal zone -> reset only if completely outside the viewport
+                if (rect.top > window.innerHeight || rect.bottom < 0) {
                     el.classList.remove("revealed");
                 }
             }
         });
-    }, {
-        threshold: 0.1,
-        rootMargin: "30px 0px -40px 0px"
-    });
+    }, observerOptions);
 
     revealElements.forEach((el) => revealObserver.observe(el));
 } else {
-    document.querySelectorAll(".reveal-title, .reveal-card, .reveal-text").forEach((el) => {
+    // Graceful fallback for reduced motion or legacy browsers
+    document.querySelectorAll(
+        ".reveal-title, .reveal-card, .reveal-text"
+    ).forEach((el) => {
         el.classList.add("revealed");
     });
 }

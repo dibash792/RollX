@@ -13,8 +13,13 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
+    <!-- Progressive enhancement script: enables animation styles only when JS runs -->
+    <script>
+        document.documentElement.classList.add('js');
+    </script>
+
     <!-- Stylesheet with cache-busting -->
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=8">
 </head>
 
 <body>
@@ -47,10 +52,14 @@
 
             <nav class="nav-links" id="navLinks">
                 <a href="#arena">ARENA</a>
+                <a href="#first-roll">FIRST ROLL</a>
                 <a href="#pricing">PRICING</a>
                 <a href="#packages">PACKAGES</a>
                 <a href="#events">EVENTS</a>
                 <a href="#community">COMMUNITY</a>
+                <a href="#why-rollx">WHY ROLLX</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">LOCATION</a>
             </nav>
 
             <div class="nav-actions">
@@ -201,10 +210,10 @@
                 </div>
 
                 <div class="arena-title-wrap">
-                    <h2 class="arena-headline">
+                    <h2 class="arena-headline reveal-title">
                         MADE TO <span class="text-orange-glow">MOVE.</span>
                     </h2>
-                    <p class="arena-subtext">
+                    <p class="arena-subtext reveal-text">
                         An indoor space built for skating, good energy and unforgettable time with your people.
                     </p>
                 </div>
@@ -214,7 +223,7 @@
             <div class="arena-stage">
 
                 <!-- Left: Cinematic Media Visual Frame -->
-                <div class="arena-visual-pane">
+                <div class="arena-visual-pane reveal-card">
                     <div class="arena-visual-frame" id="arenaFrame">
 
                         <!-- Visual Layers (Crossfades smoothly on feature hover) -->
@@ -335,7 +344,7 @@
                     </div>
 
                     <!-- Arena Bottom Action Ribbon -->
-                    <div class="arena-action-footer">
+                    <div class="arena-action-footer reveal-card">
                         <div class="action-note">
                             <span class="action-badge">VISIT US</span>
                             <span class="action-text">First time or seasoned quad skater — everyone has a lane
@@ -353,6 +362,118 @@
 
         </div>
 
+    </section>
+
+    <!-- =========================================
+         YOUR FIRST ROLL SECTION (6-STEP CUSTOMER JOURNEY)
+    ========================================== -->
+    <section id="first-roll" class="journey-section">
+        <div class="journey-container">
+            <header class="journey-header">
+                <div class="journey-kicker">
+                    <span class="kicker-pulse"></span>
+                    <span class="kicker-text">YOUR FIRST ROLL • CUSTOMER JOURNEY</span>
+                </div>
+                <h2 class="journey-headline reveal-title">
+                    HOW IT WORKS. <span class="text-orange-glow">STEP BY STEP.</span>
+                </h2>
+                <p class="journey-subtext reveal-text">
+                    Never tried quad roller skating? Don't worry. ROLLX is built for first-timers, friends, and families in Lalbandi. Here is exactly what happens from the moment you arrive.
+                </p>
+            </header>
+
+            <div class="journey-grid">
+                <!-- Step 1 -->
+                <div class="step-card reveal-card">
+                    <div class="step-top">
+                        <span class="step-number">01</span>
+                        <span class="step-icon">🎟️</span>
+                    </div>
+                    <h3 class="step-title">CHOOSE A SESSION</h3>
+                    <p class="step-desc">
+                        Pick a Single Glide (1 hr), Double Glide (2 hr), or Squad 4-Pack. Reserve your preferred time window online without advance payment, or simply walk in.
+                    </p>
+                    <div class="step-footer-tag">
+                        <span>✦ EASY ONLINE RESERVATION</span>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card reveal-card">
+                    <div class="step-top">
+                        <span class="step-number">02</span>
+                        <span class="step-icon">📍</span>
+                    </div>
+                    <h3 class="step-title">ARRIVE & CHECK IN</h3>
+                    <p class="step-desc">
+                        Head to the ROLLX front desk in Lalbandi. Show your reservation reference code or give your phone number. Settle conveniently via Cash or Fonepay QR.
+                    </p>
+                    <div class="step-footer-tag">
+                        <span>✦ CASH & FONEPAY AT DESK</span>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card reveal-card">
+                    <div class="step-top">
+                        <span class="step-number">03</span>
+                        <span class="step-icon">🛡️</span>
+                    </div>
+                    <h3 class="step-title">SAFETY ORIENTATION</h3>
+                    <p class="step-desc">
+                        Friendly floor marshals provide a 2-minute posture, knee-bend, balance, and stopping briefing so you feel steady, grounded, and confident.
+                    </p>
+                    <div class="step-footer-tag">
+                        <span>✦ ON-FLOOR MARSHAL GUIDANCE</span>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-card reveal-card">
+                    <div class="step-top">
+                        <span class="step-number">04</span>
+                        <span class="step-icon">🛼</span>
+                    </div>
+                    <h3 class="step-title">GEAR UP IN QUADS</h3>
+                    <p class="step-desc">
+                        Get fitted with sanitized 4-wheel quad roller skates and full protective gear: knee pads, elbow pads, wrist guards, and a secure helmet.
+                    </p>
+                    <div class="step-footer-tag">
+                        <span>✦ ALL GEAR INCLUDED IN PASS</span>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-card reveal-card">
+                    <div class="step-top">
+                        <span class="step-number">05</span>
+                        <span class="step-icon">⚡</span>
+                    </div>
+                    <h3 class="step-title">ROLL AT YOUR OWN PACE</h3>
+                    <p class="step-desc">
+                        Step onto the ultra-smooth hardwood floor. Use perimeter balance handrails to get your rolling legs, then glide into the open rink groove at your rhythm.
+                    </p>
+                    <div class="step-footer-tag">
+                        <span>✦ SMOOTH HARDWOOD FLOOR</span>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="step-card reveal-card">
+                    <div class="step-top">
+                        <span class="step-number">06</span>
+                        <span class="step-icon">🎶</span>
+                    </div>
+                    <h3 class="step-title">CHILL, GROOVE & CONNECT</h3>
+                    <p class="step-desc">
+                        Take a breather in the trackside lounge, skate to upbeat rhythm tunes, share laughs with friends, capture memories, and repeat the roll!
+                    </p>
+                    <div class="step-footer-tag">
+                        <span>✦ ROLL. RIDE. REPEAT.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- =========================================
@@ -380,17 +501,17 @@
                 </div>
 
                 <div class="pricing-title-wrap">
-                    <h2 class="pricing-headline">
+                    <h2 class="pricing-headline reveal-title">
                         HONEST PASSES. <span class="text-orange-glow">ZERO FRICTION.</span>
                     </h2>
-                    <p class="pricing-subtext">
+                    <p class="pricing-subtext reveal-text">
                         Every pass includes sanitized quad roller skates, full protective gear, and unrestricted access
                         to the arena floor. No hidden charges.
                     </p>
                 </div>
 
                 <!-- Interactive Pass Filter Toggle -->
-                <div class="pricing-toggle-wrap">
+                <div class="pricing-toggle-wrap reveal-text">
                     <div class="pricing-toggle-pill" role="tablist">
                         <button class="toggle-btn active" id="toggleSessions" role="tab" aria-selected="true">
                             SESSION PASSES
@@ -406,7 +527,7 @@
             <div class="pricing-grid" id="sessionPassesGrid">
 
                 <!-- Card 01: Single Glide (1 Hour = Rs 100) -->
-                <div class="price-card">
+                <div class="price-card reveal-card">
                     <div class="card-header">
                         <span class="card-tier">01 // CASUAL SESSION</span>
                         <h3 class="card-title">SINGLE GLIDE (1 HR)</h3>
@@ -448,7 +569,7 @@
                 </div>
 
                 <!-- Card 02: Double Glide (2 Hours = Rs 200 - Featured) -->
-                <div class="price-card featured">
+                <div class="price-card featured reveal-card">
                     <div class="featured-badge">
                         <span class="badge-dot"></span>
                         <span>MOST POPULAR • BEST VALUE</span>
@@ -498,7 +619,7 @@
                 </div>
 
                 <!-- Card 03: Specific Package Portal Gateway -->
-                <div class="price-card package-portal-card">
+                <div class="price-card package-portal-card reveal-card">
                     <div class="card-header">
                         <span class="card-tier">03 // PACKAGES PORTAL</span>
                         <h3 class="card-title">SPECIAL PACKAGES</h3>
@@ -545,7 +666,7 @@
             <div class="pricing-grid hidden" id="membershipPassesGrid">
 
                 <!-- Squad Pass -->
-                <div class="price-card featured">
+                <div class="price-card featured reveal-card">
                     <div class="featured-badge">
                         <span class="badge-dot"></span>
                         <span>BEST VALUE FOR GROUPS</span>
@@ -591,7 +712,7 @@
                 </div>
 
                 <!-- Monthly Glider Pass -->
-                <div class="price-card">
+                <div class="price-card reveal-card">
                     <div class="card-header">
                         <span class="card-tier">MEMBERSHIP // MONTHLY</span>
                         <h3 class="card-title">THE UNLIMITED GLIDER</h3>
@@ -632,7 +753,7 @@
                 </div>
 
                 <!-- Student / Youth Pass -->
-                <div class="price-card">
+                <div class="price-card reveal-card">
                     <div class="card-header">
                         <span class="card-tier">STUDENT // WEEKDAY</span>
                         <h3 class="card-title">STUDENT AFTER-SCHOOL</h3>
@@ -675,7 +796,7 @@
             </div>
 
             <!-- Rental & Quality Guarantee Banner -->
-            <div class="pricing-guarantee-banner">
+            <div class="pricing-guarantee-banner reveal-card">
                 <div class="guarantee-left">
                     <div class="guarantee-badge">
                         <span class="quad-indicator">QUAD ONLY</span>
@@ -711,15 +832,15 @@
                     <span class="kicker-pulse"></span>
                     <span class="kicker-text">OFFICIAL PACKAGES PORTAL</span>
                 </div>
-                <h2 class="portal-headline">
+                <h2 class="portal-headline reveal-title">
                     SPECIFIC PACKAGE <span class="text-orange-glow">PORTAL.</span>
                 </h2>
-                <p class="portal-subtext">
+                <p class="portal-subtext reveal-text">
                     Custom-built packages for squad sessions, after-school student riders, monthly gliders, and weekend neon events in Lalbandi.
                 </p>
 
                 <!-- Filter Pills -->
-                <div class="portal-filters">
+                <div class="portal-filters reveal-text">
                     <button class="portal-filter-btn active" data-filter="all">ALL PACKAGES</button>
                     <button class="portal-filter-btn" data-filter="squad">SQUADS & CREWS</button>
                     <button class="portal-filter-btn" data-filter="student">STUDENT SPECIAL</button>
@@ -731,7 +852,7 @@
             <!-- Packages Grid -->
             <div class="packages-grid">
                 <!-- Package 1: Squad 4-Pack -->
-                <div class="package-card" data-category="squad">
+                <div class="package-card reveal-card" data-category="squad">
                     <div class="package-badge">SAVE 20% ON CREW</div>
                     <div class="package-top">
                         <span class="package-category">SQUAD BUNDLE</span>
@@ -759,7 +880,7 @@
                 </div>
 
                 <!-- Package 2: Student After-School -->
-                <div class="package-card" data-category="student">
+                <div class="package-card reveal-card" data-category="student">
                     <div class="package-badge student">STUDENT PERK</div>
                     <div class="package-top">
                         <span class="package-category">STUDENT EXCLUSIVE</span>
@@ -787,7 +908,7 @@
                 </div>
 
                 <!-- Package 3: Weekend Neon Night Jam -->
-                <div class="package-card featured" data-category="neon">
+                <div class="package-card featured reveal-card" data-category="neon">
                     <div class="package-badge neon">FRI & SAT NIGHTS</div>
                     <div class="package-top">
                         <span class="package-category">EVENING EVENT</span>
@@ -815,7 +936,7 @@
                 </div>
 
                 <!-- Package 4: Monthly Unlimited Glider -->
-                <div class="package-card" data-category="monthly">
+                <div class="package-card reveal-card" data-category="monthly">
                     <div class="package-badge">VIP MEMBERSHIP</div>
                     <div class="package-top">
                         <span class="package-category">30-DAY PASS</span>
@@ -844,7 +965,7 @@
             </div>
 
             <!-- Custom Package Builder & Promo Calculator -->
-            <div class="custom-package-builder">
+            <div class="custom-package-builder reveal-card">
                 <div class="builder-intro">
                     <span class="builder-tag">INTERACTIVE CALCULATOR</span>
                     <h3>BUILD A CUSTOM CREW PACKAGE</h3>
@@ -914,20 +1035,20 @@
         <div class="events-ambient-glow"></div>
 
         <div class="events-container">
-            <header class="events-header reveal-title">
+            <header class="events-header">
                 <div class="events-kicker">
                     <span class="kicker-pulse"></span>
                     <span class="kicker-text">EVENTS AT ROLLX</span>
                 </div>
-                <h2 class="events-headline">
+                <h2 class="events-headline reveal-title">
                     EVENTS AT <span class="text-orange-glow">ROLLX.</span>
                 </h2>
-                <p class="events-subtext">
+                <p class="events-subtext reveal-text">
                     Exciting skate sessions, clinics, friendly challenges, and social evenings at Lalbandi's indoor arena.
                 </p>
 
                 <!-- Filter Controls -->
-                <div class="events-filter-bar" role="tablist" aria-label="Event category filters">
+                <div class="events-filter-bar reveal-text" role="tablist" aria-label="Event category filters">
                     <button type="button" class="event-filter-btn active" data-filter="all" role="tab" aria-selected="true">
                         ALL EVENTS
                     </button>
@@ -1226,20 +1347,20 @@
 
         <div class="community-container">
             <!-- Header -->
-            <header class="community-header reveal-title">
+            <header class="community-header">
                 <div class="community-kicker">
                     <span class="kicker-pulse"></span>
                     <span class="kicker-text">ROLLX FAM & CULTURE</span>
                 </div>
-                <h2 class="community-headline">
+                <h2 class="community-headline reveal-title">
                     MORE THAN SKATING — <span class="text-orange-glow">IT’S A COMMUNITY.</span>
                 </h2>
-                <p class="community-subtext">
+                <p class="community-subtext reveal-text">
                     ROLLX is an indoor haven in Lalbandi where people meet new friends, learn skating together, improve confidence and skills, join challenges, share skating moments, support local skaters, and participate in community activities.
                 </p>
 
                 <!-- Core Activities Strip -->
-                <div class="community-values-strip" aria-label="Community core activities">
+                <div class="community-values-strip reveal-text" aria-label="Community core activities">
                     <span class="val-pill">🤝 Meet New Friends</span>
                     <span class="val-pill">🛼 Learn Skating Together</span>
                     <span class="val-pill">⚡ Improve Confidence & Skills</span>
@@ -1385,15 +1506,15 @@
         <div class="booking-ambient-glow"></div>
 
         <div class="booking-container">
-            <header class="booking-header reveal-title">
+            <header class="booking-header">
                 <div class="booking-kicker">
                     <span class="kicker-pulse"></span>
                     <span class="kicker-text">FAST ONLINE RESERVATION</span>
                 </div>
-                <h2 class="booking-headline">
+                <h2 class="booking-headline reveal-title">
                     RESERVE YOUR <span class="text-orange-glow">GLIDE.</span>
                 </h2>
-                <p class="booking-subtext">
+                <p class="booking-subtext reveal-text">
                     Choose your session and time slot below. Pay conveniently with cash or Fonepay QR at the arena desk upon arrival. No advance online payment needed.
                 </p>
             </header>
@@ -1493,10 +1614,37 @@
                     </div>
                 </div>
 
-                <!-- 2. Preferred Time Slot -->
+                <!-- 2. Skaters Count & Date -->
                 <div class="res-block">
                     <div class="res-block-header">
                         <span class="res-step-num">02</span>
+                        <div class="res-step-titles">
+                            <h3 class="res-step-title">SKATERS & DATE</h3>
+                            <span class="res-step-hint">Select group size and scheduled day</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; margin-top: 14px;">
+                        <div>
+                            <span style="display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Number of Skaters</span>
+                            <div class="skater-count-selector">
+                                <button type="button" class="stepper-btn" id="stepperMinusBtn" aria-label="Decrease skaters">−</button>
+                                <span class="stepper-value" id="stepperCountDisplay">1</span>
+                                <button type="button" class="stepper-btn" id="stepperPlusBtn" aria-label="Increase skaters">+</button>
+                            </div>
+                        </div>
+
+                        <div style="flex-grow: 1; min-width: 200px;">
+                            <span style="display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Scheduled Date</span>
+                            <input type="date" id="resBookingDate" style="width: 100%; max-width: 260px;" aria-label="Select reservation date">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Preferred Time Slot -->
+                <div class="res-block">
+                    <div class="res-block-header">
+                        <span class="res-step-num">03</span>
                         <div class="res-step-titles">
                             <h3 class="res-step-title">PREFERRED TIME SLOT</h3>
                             <span class="res-step-hint">Choose your preferred session window</span>
@@ -1588,24 +1736,84 @@
     </section>
 
     <!-- =========================================
-         FOUNDERS SECTION
+         WHY ROLLX: PRINCIPLES & FOUNDERS SECTION
     ========================================== -->
-    <section id="founders" class="founders-section">
+    <section id="why-rollx" class="founders-section">
         <div class="founders-ambient-glow"></div>
 
         <div class="founders-container">
-            <header class="founders-header reveal-title">
+            <header class="founders-header">
                 <div class="founders-kicker">
                     <span class="kicker-pulse"></span>
-                    <span class="kicker-text">MEET THE FOUNDERS</span>
+                    <span class="kicker-text">HONEST PRINCIPLES • LALBANDI CULTURE</span>
                 </div>
-                <h2 class="founders-headline">
-                    BUILT BY THE PEOPLE BEHIND <span class="text-orange-glow">ROLLX.</span>
+                <h2 class="founders-headline reveal-title">
+                    WHY ROLLX. <span class="text-orange-glow">OUR COMMITMENT.</span>
                 </h2>
-                <p class="founders-subtext">
-                    Dedicated to building a vibrant indoor skating and recreation hub in Lalbandi, Sarlahi that brings movement, music, fun, and community together.
+                <p class="founders-subtext reveal-text">
+                    "Don't try to maximize dopamine. Try to maximize enjoyment and satisfaction." Every feature is designed for an honest, safe, and memorable experience for our local community.
                 </p>
             </header>
+
+            <!-- 6 Core Principles Grid -->
+            <div class="principles-grid">
+                <div class="principle-card reveal-card">
+                    <span class="principle-icon">💫</span>
+                    <h3 class="principle-title">GENUINE ENJOYMENT</h3>
+                    <p class="principle-desc">
+                        Movement, music, and real shared laughter. We prioritize lasting satisfaction and positive memories over cheap, hyper-stimulating gimmicks.
+                    </p>
+                </div>
+
+                <div class="principle-card reveal-card">
+                    <span class="principle-icon">🏷️</span>
+                    <h3 class="principle-title">HONEST & FAIR PRICING</h3>
+                    <p class="principle-desc">
+                        Every single pass includes sanitized quad roller skates and protective pad sets. No hidden equipment rental charges or surprise entry fees.
+                    </p>
+                </div>
+
+                <div class="principle-card reveal-card">
+                    <span class="principle-icon">🤝</span>
+                    <h3 class="principle-title">WELCOMING TO FIRST-TIMERS</h3>
+                    <p class="principle-desc">
+                        ROLLX is not an elitist athletic academy. Whether you wobble on your first stride or groove with confidence, everyone belongs on the hardwood floor.
+                    </p>
+                </div>
+
+                <div class="principle-card reveal-card">
+                    <span class="principle-icon">🛡️</span>
+                    <h3 class="principle-title">RESPONSIBLE SAFETY PRACTICES</h3>
+                    <p class="principle-desc">
+                        On-rink floor marshals, impact-cushioned perimeter borders, safety briefings, and mandatory sanitization of all quad boots after every glide.
+                    </p>
+                </div>
+
+                <div class="principle-card reveal-card">
+                    <span class="principle-icon">👥</span>
+                    <h3 class="principle-title">COMMUNITY CONNECTION</h3>
+                    <p class="principle-desc">
+                        A clean, healthy social hub for Lalbandi youth, friends, and families to connect in real life, step away from screens, and build local friendships.
+                    </p>
+                </div>
+
+                <div class="principle-card reveal-card">
+                    <span class="principle-icon">🏠</span>
+                    <h3 class="principle-title">ALL-WEATHER INDOOR ARENA</h3>
+                    <p class="principle-desc">
+                        Monsoon rains, midday heat, or dusty roads won't stop your session. A climate-comfortable, pristine indoor rink built to roll year-round.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Founders Grid -->
+            <div class="founders-kicker" style="margin-top: 32px; display: inline-flex;">
+                <span class="kicker-pulse"></span>
+                <span class="kicker-text">FOUNDED IN LALBANDI</span>
+            </div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 24px; color: #fff;">
+                BUILT BY THE PEOPLE BEHIND <span class="text-orange-glow">ROLLX.</span>
+            </h3>
 
             <div class="founders-grid">
                 <!-- Founder 1: Mr. Dibash -->
@@ -1624,7 +1832,7 @@
                     </div>
                     <div class="founder-divider"></div>
                     <p class="founder-bio">
-                        Founder of ROLLX, focused on building a new indoor skating and recreation experience in Lalbandi that brings movement, music, fun, and community together.
+                        Founder of ROLLX, focused on building an authentic indoor roller-skating and recreation destination in Lalbandi that brings movement, music, fun, and community together.
                     </p>
                     <div class="founder-footer">
                         <span class="founder-loc">📍 Lalbandi, Sarlahi</span>
@@ -1648,7 +1856,7 @@
                     </div>
                     <div class="founder-divider"></div>
                     <p class="founder-bio">
-                        Co-Founder of ROLLX, helping shape the vision, experience, and growth of the arena while building a strong local skating community.
+                        Co-Founder of ROLLX, helping shape the skater experience, facility standards, and community outreach while nurturing local skating culture.
                     </p>
                     <div class="founder-footer">
                         <span class="founder-loc">📍 Lalbandi, Sarlahi</span>
@@ -1660,11 +1868,215 @@
     </section>
 
     <!-- =========================================
+         FAQ SECTION
+    ========================================== -->
+    <section id="faq" class="faq-section">
+        <div class="faq-container">
+            <header class="faq-header">
+                <div class="faq-kicker">
+                    <span class="kicker-pulse"></span>
+                    <span class="kicker-text">PRACTICAL QUESTIONS • HONEST ANSWERS</span>
+                </div>
+                <h2 class="faq-headline reveal-title">
+                    FREQUENTLY ASKED <span class="text-orange-glow">QUESTIONS.</span>
+                </h2>
+                <p class="faq-subtext reveal-text">
+                    Everything you need to know about skating sessions, gear, safety, and policies at ROLLX Lalbandi.
+                </p>
+            </header>
+
+            <div class="faq-accordion reveal-card">
+                <!-- FAQ 1 -->
+                <div class="faq-item open">
+                    <button type="button" class="faq-question">
+                        <span>What makes ROLLX different from a skateboard park?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>ROLLX is exclusively a dedicated indoor <strong>quad roller-skating arena</strong> featuring a smooth, polished indoor floor, music rhythm environment, and full protective gear. Skateboards, skateboard ramps, bowls, and aggressive street tricks are strictly not permitted to protect our floor and preserve a safe, relaxed skating experience.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <button type="button" class="faq-question">
+                        <span>Do I need to bring my own roller skates or gear?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No! Every session pass includes sanitized quad roller skates (four wheels arranged in pairs) along with a full set of protective knee pads, elbow pads, wrist guards, and a helmet. You are also welcome to bring your own quad skates if you own a pair.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <button type="button" class="faq-question">
+                        <span>What is the age requirement to skate at ROLLX?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our general session recommendation is ages 10 and above for independent skating. Younger children are warmly welcome during dedicated Family Skate Time sessions when accompanied by an adult or guardian.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <button type="button" class="faq-question">
+                        <span>Do I need to pay online in advance to book a session?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No advance online payment is required! You can reserve your preferred session and time window directly on this website, and pay at the arena front desk upon arrival using cash or Fonepay QR code.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <button type="button" class="faq-question">
+                        <span>How long are the sessions and what are the rates?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our standard Single Glide session is 1 Hour (Rs. 100) and the Double Glide is 2 Hours (Rs. 200). We also offer the Squad 4-Pack (Rs. 320 for 4 skaters), special student rates (Rs. 75/hr), 3-Hour weekend neon jams (Rs. 250), and 30-day unlimited monthly glider passes (Rs. 1,800). All prices are in Nepalese Rupees (रू).</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="faq-item">
+                    <button type="button" class="faq-question">
+                        <span>What clothing should I wear to the arena?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Wear comfortable athletic clothes that allow freedom of movement (such as joggers, track pants, or athletic shorts). <strong>Please bring or wear a clean pair of socks</strong>, which are necessary for comfort inside the quad skate boots.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="faq-item">
+                    <button type="button" class="faq-question">
+                        <span>Where is the arena located and what are the opening hours?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>ROLLX is located in Lalbandi, Sarlahi District, Nepal, easily accessible from the Mahendra Highway. Planned operating hours are 9:00 AM – 9:00 PM daily. [Exact opening dates and holiday schedules will be officially confirmed by arena management prior to grand opening].</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         LOCATION & CONTACT SECTION
+    ========================================== -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <header class="contact-header">
+                <div class="contact-kicker">
+                    <span class="kicker-pulse"></span>
+                    <span class="kicker-text">VISIT US IN LALBANDI • SARLAHI</span>
+                </div>
+                <h2 class="contact-headline reveal-title">
+                    FIND US. <span class="text-orange-glow">GET IN TOUCH.</span>
+                </h2>
+                <p class="contact-subtext reveal-text">
+                    Conveniently located in Lalbandi, Sarlahi, Nepal. Stop by during session hours, reach out with questions, or plan a group visit.
+                </p>
+            </header>
+
+            <div class="contact-grid">
+                <!-- Left: Location & Details Card -->
+                <div class="contact-card reveal-card">
+                    <div>
+                        <div class="coords-pill">
+                            <span>📍 27.0538° N, 85.6358° E • LALBANDI, SARLAHI</span>
+                        </div>
+                        <h3 class="contact-card-title">ROLLX ARENA HEADQUARTERS</h3>
+
+                        <div class="contact-details-list">
+                            <div class="contact-item">
+                                <span class="contact-item-icon">📍</span>
+                                <div class="contact-item-text">
+                                    <strong>Arena Location</strong>
+                                    <p>Lalbandi-2, Sarlahi District, Madhesh Province, Nepal<br>(Central Corridor, near Mahendra Highway)</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <span class="contact-item-icon">🕒</span>
+                                <div class="contact-item-text">
+                                    <strong>Operating Schedule</strong>
+                                    <p>Monday – Sunday: 9:00 AM – 9:00 PM<br>(Morning, Afternoon, Evening Jam, Neon Night slots)</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <span class="contact-item-icon">📞</span>
+                                <div class="contact-item-text">
+                                    <strong>Phone / Inquiries</strong>
+                                    <p><a href="tel:+9779800000000">+977-98XXXXXXXX</a> <span style="font-size: 11px; color: var(--accent-orange); font-weight: 700;">[Owner number to confirm]</span></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <span class="contact-item-icon">✉️</span>
+                                <div class="contact-item-text">
+                                    <strong>Official Email</strong>
+                                    <p><a href="mailto:info@rollxarena.com">info@rollxarena.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rink-rule-box">
+                        <strong>Arena Rule:</strong> Dedicated quad roller-skating floor only. Skaters must use arena-approved quad skates with clean polyurethane wheels.
+                    </div>
+                </div>
+
+                <!-- Right: Send Inquiry Form -->
+                <div class="contact-card reveal-card">
+                    <h3 class="contact-card-title">SEND AN INQUIRY</h3>
+                    <form class="contact-form" id="contactInquiryForm">
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="ciName">YOUR NAME <span class="required-star">*</span></label>
+                                <input type="text" id="ciName" placeholder="e.g. Ramesh Thapa" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ciContact">PHONE OR EMAIL <span class="required-star">*</span></label>
+                                <input type="text" id="ciContact" placeholder="98XXXXXXXX or email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ciSubject">SUBJECT</label>
+                            <input type="text" id="ciSubject" placeholder="General Inquiry, Birthday Event, or Group Session">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ciMessage">MESSAGE <span class="required-star">*</span></label>
+                            <textarea id="ciMessage" placeholder="Ask anything about arena sessions, pricing, or community events..." required></textarea>
+                        </div>
+
+                        <div class="auth-alert success" id="contactSuccessMsg" style="display: none;"></div>
+                        <div class="auth-alert error" id="contactErrorMsg" style="display: none;"></div>
+
+                        <button type="submit" class="auth-submit-btn" style="margin-top: 8px;">
+                            <span>SEND MESSAGE</span>
+                            <span class="btn-arrow">↗</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
          GLOBAL FOOTER
     ========================================== -->
     <footer class="site-footer">
         <div class="footer-container">
-            <div class="footer-top">
+            <div class="footer-top reveal-card">
                 <div class="footer-brand">
                     <a href="#home" class="footer-logo">
                         ROLL<span>X</span>
@@ -1695,7 +2107,7 @@
                 </div>
             </div>
 
-            <div class="footer-bottom">
+            <div class="footer-bottom reveal-text">
                 <p class="copyright">© 2026 ROLLX Arena. All rights reserved. Lalbandi, Sarlahi, Nepal.</p>
                 <div class="footer-links">
                     <span>Quad Roller Skating Only</span>
@@ -1834,50 +2246,114 @@
         <div class="auth-modal-dialog booking-dialog" role="dialog" aria-modal="true">
             <button class="auth-close-btn" id="closeBookingModalBtn" aria-label="Close modal">✕</button>
 
-            <div class="auth-brand">
-                <div class="auth-logo">ROLL<span>X</span></div>
-                <div class="auth-pill">CONFIRM RESERVATION</div>
+            <!-- Standard Booking Form View -->
+            <div id="bookingFormState">
+                <div class="auth-brand">
+                    <div class="auth-logo">ROLL<span>X</span></div>
+                    <div class="auth-pill">CONFIRM RESERVATION</div>
+                </div>
+
+                <h3 class="auth-heading">RESERVE YOUR PASS</h3>
+                <p class="auth-sub">Review your chosen pass and finalize your slot at ROLLX Lalbandi.</p>
+
+                <div class="booking-summary-card">
+                    <div class="b-row">
+                        <span class="b-lbl">SELECTED PASS:</span>
+                        <strong class="b-val" id="bookSelectedPass">Single Glide (1 Hour)</strong>
+                    </div>
+                    <div class="b-row">
+                        <span class="b-lbl">SKATERS COUNT:</span>
+                        <strong class="b-val" id="bookSkatersCount">1 Skater</strong>
+                    </div>
+                    <div class="b-row">
+                        <span class="b-lbl">DATE & WINDOW:</span>
+                        <span class="b-val" id="bookDateSlot">Today • Evening Jam</span>
+                    </div>
+                    <div class="b-row">
+                        <span class="b-lbl">SKATER NAME:</span>
+                        <strong class="b-val" id="bookSkaterName">—</strong>
+                    </div>
+                    <div class="b-row">
+                        <span class="b-lbl">PHONE:</span>
+                        <strong class="b-val" id="bookSkaterPhone">—</strong>
+                    </div>
+                    <div class="b-row">
+                        <span class="b-lbl">LOCATION:</span>
+                        <span class="b-val">ROLLX Arena, Lalbandi</span>
+                    </div>
+                    <div class="b-row total">
+                        <span class="b-lbl">TOTAL TO PAY AT RINK:</span>
+                        <strong class="b-total-val" id="bookTotalAmount">रू 100</strong>
+                    </div>
+                </div>
+
+                <!-- Guest name & phone if not logged in -->
+                <div id="guestBookingFields" style="display: none; margin-top: 16px;">
+                    <div class="form-group">
+                        <label for="bookGuestName">FULL NAME <span class="required-star">* REQUIRED</span></label>
+                        <input type="text" id="bookGuestName" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookGuestPhone">PHONE NUMBER (NEPAL) <span class="required-star">* REQUIRED</span></label>
+                        <div class="phone-input-wrap">
+                            <span class="country-prefix">+977</span>
+                            <input type="tel" id="bookGuestPhone" placeholder="98XXXXXXXX">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 14px;">
+                    <label for="bookPromoInput">PROMO CODE (OPTIONAL)</label>
+                    <div class="promo-input-wrap">
+                        <input type="text" id="bookPromoInput" placeholder="Enter promo code (e.g. ROLLX10)">
+                        <button type="button" id="bookApplyPromoBtn">APPLY</button>
+                    </div>
+                    <span class="promo-feedback" id="bookPromoFeedback"></span>
+                </div>
+
+                <div class="auth-alert error" id="bookingModalError" style="display: none; margin-top: 12px;"></div>
+
+                <button type="button" class="auth-submit-btn" id="confirmBookingBtn" style="margin-top: 16px;">
+                    <span>CONFIRM MY SLOT NOW</span>
+                    <span class="btn-arrow">✓</span>
+                </button>
             </div>
 
-            <h3 class="auth-heading">RESERVE YOUR PASS</h3>
-            <p class="auth-sub">Review your chosen pass and finalize your slot at ROLLX Lalbandi.</p>
+            <!-- Booking Confirmed Success View -->
+            <div id="bookingSuccessState" style="display: none; text-align: center; padding: 12px 4px;">
+                <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
+                <div class="auth-pill" style="margin-bottom: 8px;">RESERVATION CONFIRMED</div>
+                <h3 class="auth-heading" style="font-size: 1.6rem; margin-bottom: 8px;">YOU'RE READY TO ROLL!</h3>
+                <p class="auth-sub" style="margin-bottom: 20px;">Your slot has been recorded. Settle payment at the rink desk upon arrival.</p>
 
-            <div class="booking-summary-card">
-                <div class="b-row">
-                    <span class="b-lbl">SELECTED PASS:</span>
-                    <strong class="b-val" id="bookSelectedPass">Single Glide (1 Hour)</strong>
+                <div class="booking-summary-card" style="text-align: left;">
+                    <div class="b-row" style="background: rgba(255, 107, 26, 0.1); border-radius: 8px; padding: 10px 12px; margin-bottom: 10px;">
+                        <span class="b-lbl" style="color: var(--accent-orange); font-weight: 800;">BOOKING REF CODE:</span>
+                        <strong class="b-val" id="confirmedRefCode" style="color: #fff; font-size: 1.25rem; font-family: monospace;">RLX-2610-A91B</strong>
+                    </div>
+                    <div class="b-row">
+                        <span class="b-lbl">PASS:</span>
+                        <strong class="b-val" id="confirmedPassName">—</strong>
+                    </div>
+                    <div class="b-row">
+                        <span class="b-lbl">SKATERS & SCHEDULE:</span>
+                        <span class="b-val" id="confirmedSchedule">—</span>
+                    </div>
+                    <div class="b-row total">
+                        <span class="b-lbl">AMOUNT TO PAY:</span>
+                        <strong class="b-total-val" id="confirmedTotal">रू 100</strong>
+                    </div>
                 </div>
-                <div class="b-row">
-                    <span class="b-lbl">SKATER NAME:</span>
-                    <strong class="b-val" id="bookSkaterName">—</strong>
+
+                <div class="rink-rule-box" style="margin-top: 18px; text-align: left; font-size: 0.88rem;">
+                    💵 <strong>Desk Payment Notice:</strong> Please present your booking reference code at the arena front desk in Lalbandi. Pay with Cash or Fonepay QR upon arrival.
                 </div>
-                <div class="b-row">
-                    <span class="b-lbl">PHONE:</span>
-                    <strong class="b-val" id="bookSkaterPhone">—</strong>
-                </div>
-                <div class="b-row">
-                    <span class="b-lbl">LOCATION:</span>
-                    <span class="b-val">Lalbandi Hardwood Arena</span>
-                </div>
-                <div class="b-row total">
-                    <span class="b-lbl">TOTAL TO PAY AT RINK:</span>
-                    <strong class="b-total-val" id="bookTotalAmount">रू 100</strong>
-                </div>
+
+                <button type="button" class="auth-submit-btn" id="closeSuccessBookingBtn" style="margin-top: 20px;">
+                    <span>DONE & RETURN TO SITE</span>
+                    <span class="btn-arrow">✓</span>
+                </button>
             </div>
-
-            <div class="form-group" style="margin-top: 18px;">
-                <label for="bookPromoInput">PROMO CODE (OPTIONAL)</label>
-                <div class="promo-input-wrap">
-                    <input type="text" id="bookPromoInput" placeholder="Enter promo code (optional)">
-                    <button type="button" id="bookApplyPromoBtn">APPLY</button>
-                </div>
-                <span class="promo-feedback" id="bookPromoFeedback"></span>
-            </div>
-
-            <button type="button" class="auth-submit-btn" id="confirmBookingBtn" style="margin-top: 18px;">
-                <span>CONFIRM MY SLOT NOW</span>
-                <span class="btn-arrow">✓</span>
-            </button>
         </div>
     </div>
 
@@ -1962,7 +2438,7 @@
         <span class="toast-message" id="toastMessage"></span>
     </div>
 
-    <script src="script.js?v=6"></script>
+    <script type="module" src="script.js?v=9"></script>
 
 </body>
 
